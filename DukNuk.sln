@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DukNukWpf", "DukNukWpf\DukNukWpf.csproj", "{71ACA0D8-388E-4DC3-8AFB-11F2E2A44696}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DukNukWpfTest", "DukNukWpfTest\DukNukWpfTest.csproj", "{7E305B23-D72B-4D90-88BA-04E18552DF1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71ACA0D8-388E-4DC3-8AFB-11F2E2A44696}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71ACA0D8-388E-4DC3-8AFB-11F2E2A44696}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71ACA0D8-388E-4DC3-8AFB-11F2E2A44696}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71ACA0D8-388E-4DC3-8AFB-11F2E2A44696}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E305B23-D72B-4D90-88BA-04E18552DF1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E305B23-D72B-4D90-88BA-04E18552DF1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E305B23-D72B-4D90-88BA-04E18552DF1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E305B23-D72B-4D90-88BA-04E18552DF1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

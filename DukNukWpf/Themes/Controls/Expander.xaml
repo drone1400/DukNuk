@@ -1,0 +1,180 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    mc:Ignorable="d">
+    <d:ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeColors/DefaultBlue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeSizes.xaml" />
+    </d:ResourceDictionary.MergedDictionaries>
+
+    <Style
+        x:Key="DukNuk.Style.Expander.ToggleButton"
+        TargetType="{x:Type ToggleButton}">
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Width" Value="{DynamicResource DukNuk.Size.Expander.ButtonSize}" />
+        <Setter Property="Height" Value="{DynamicResource DukNuk.Size.Expander.ButtonSize}" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid>
+                        <Ellipse
+                            x:Name="border"
+                            StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
+                            Stroke="{DynamicResource DukNuk.Colors.Brush.Border.Light}"
+                            Fill="{DynamicResource DukNuk.Colors.Brush.Background.Medium}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            Effect="{DynamicResource DukNuk.Colors.Glow.Control}" />
+                        <!-- Put content presenter over border instead of inside it so it doesn't get affected by the glow blur!-->
+                        <Path
+                            x:Name="path"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Margin="{TemplateBinding Padding}"
+                            Data="{DynamicResource DukNuk.Size.Expander.ArrowDownGeometry}"
+                            Fill="{DynamicResource DukNuk.Colors.Brush.Background.Light}"
+                            Stretch="UniformToFill"
+                            RenderTransformOrigin="0.5,0.5">
+                            <Path.RenderTransform>
+                                <RotateTransform Angle="-90" />
+                            </Path.RenderTransform>
+                        </Path>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Stroke" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Light.Bright}" />
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Fill" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
+                            <Setter Property="Stroke" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Light.Bright}" />
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="true">
+                            <Setter Property="Fill" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
+                            <Setter Property="Stroke" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Light.Bright}" />
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                            <Setter Property="RenderTransform" TargetName="path">
+                                <Setter.Value>
+                                    <RotateTransform Angle="0" />
+                                </Setter.Value>
+                            </Setter>
+                        </Trigger>
+                        <DataTrigger
+                            Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type Expander}}}"
+                            Value="false">
+                            <Setter Property="Stroke" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled}" />
+                            <Setter Property="Fill" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="{x:Type Expander}"
+        TargetType="{x:Type Expander}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+        <Setter Property="Padding" Value="4" />
+        <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.Generic.ControlMargin}" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Width" Value="Auto" />
+
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Expander}">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition x:Name="ContentRow" Height="0" />
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="{DynamicResource DukNuk.Size.Expander.HeaderLeftSide}" />
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <ToggleButton Grid.Column="0"
+                                          Style="{DynamicResource DukNuk.Style.Expander.ToggleButton}"
+                                          IsChecked="{Binding IsExpanded, Mode=TwoWay,  RelativeSource={RelativeSource TemplatedParent}}" />
+
+                            <Border x:Name="Border21"
+                                    Grid.Column="1"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="4" />
+
+                            <ContentPresenter Grid.Column="2" Margin="4"
+                                              ContentSource="Header"
+                                              RecognizesAccessKey="True" />
+
+                            <Border x:Name="Border22"
+                                    Grid.Column="3"
+                                    BorderThickness="{TemplateBinding BorderThickness}"
+                                    BorderBrush="{TemplateBinding BorderBrush}"
+                                    Background="{TemplateBinding Background}"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Stretch"
+                                    Margin="4" />
+                        </Grid>
+                        <ContentPresenter
+                            Grid.Row="1"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                            Margin="{TemplateBinding Padding}" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsExpanded" Value="True">
+                            <Setter TargetName="ContentRow" Property="Height" Value="*" />
+                        </Trigger>
+
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Text.Light.Disabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+</ResourceDictionary>

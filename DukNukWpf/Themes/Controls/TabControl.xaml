@@ -1,0 +1,631 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:controls="clr-namespace:DukNuk.Wpf.Controls"
+                    xmlns:converters="clr-namespace:DukNuk.Wpf.Themes.Converters"
+                    mc:Ignorable="d">
+    <d:ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary
+            Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeColors/DefaultBlue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeSizes.xaml" />
+    </d:ResourceDictionary.MergedDictionaries>
+
+
+    <converters:NukTabItemPathConverter x:Key="DukNuk.Converter.TabItem.Path" />
+    <converters:NukTabItemScrollVisibilityConverter x:Key="DukNuk.Converter.TabItem.ScrollVisibility" />
+    <converters:NukTabItemZIndexReverseConverter x:Key="DukNuk.Converter.TabItem.ZIndexReverser" />
+    <converters:NukTabItemHeaderPaddingConverter x:Key="DukNuk.Converter.TabItem.HeaderPadding" />
+    <converters:NukTabControlBorderPathConverter x:Key="DukNuk.Converter.TabControl.BorderPath" />
+
+
+    <Style
+        x:Key="DukNuk.Style.TabControl.HeaderScrollViewerButton"
+        TargetType="{x:Type RepeatButton}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium.Bright}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+        <Setter Property="Effect" Value="{DynamicResource DukNuk.Colors.Glow.Control}" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <ContentPresenter Focusable="False"
+                                      Margin="{TemplateBinding Padding}"
+                                      HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                      VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Effect"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.MouseOver}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Effect"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Light.Bright}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark.Bright}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Effect"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Text.Light.Disabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--ScrollViewer for a custom horizontal TabControl header panel-->
+    <Style
+        x:Key="DukNuk.Style.TabControl.HeaderScrollViewerHorizontal"
+        TargetType="{x:Type controls:NukScrollViewer}">
+
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Auto" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="InvertMouseWheelAxes" Value="True" />
+        <Setter Property="IgnoreKeyboardScrolling" Value="True" />
+        <Setter Property="CanContentScroll" Value="True" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:NukScrollViewer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                        <ScrollContentPresenter Grid.Row="0" Grid.Column="1"
+                                                Content="{TemplateBinding ScrollViewer.Content}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}" />
+
+                        <RepeatButton
+                            x:Name="ButtonLeft"
+                            Style="{DynamicResource DukNuk.Style.TabControl.HeaderScrollViewerButton}"
+                            Grid.Row="0" Grid.Column="0"
+                            Margin="{TemplateBinding Padding}"
+                            Command="{x:Static ScrollBar.LineLeftCommand}"
+                            CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                            Focusable="False">
+                            <RepeatButton.Visibility>
+                                <MultiBinding
+                                    FallbackValue="Visibility.Hidden"
+                                    Converter="{StaticResource DukNuk.Converter.TabItem.ScrollVisibility}"
+                                    ConverterParameter="0">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="ComputedHorizontalScrollBarVisibility" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="HorizontalOffset" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ExtentWidth" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ViewportWidth" />
+                                </MultiBinding>
+                            </RepeatButton.Visibility>
+                            <Path
+                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonLeft}"
+                                Stroke="{Binding BorderBrush, ElementName=ButtonLeft}"
+                                Fill="{Binding Background, ElementName=ButtonLeft}"
+                                Effect="{Binding Effect, ElementName=ButtonLeft}"
+                                Data="{DynamicResource DukNuk.Size.TabControl.Horizontal.ButtonPath}"
+                                Stretch="None" />
+                        </RepeatButton>
+                        <RepeatButton
+                            x:Name="ButtonRight"
+                            Style="{DynamicResource DukNuk.Style.TabControl.HeaderScrollViewerButton}"
+                            Grid.Row="0" Grid.Column="2"
+                            Margin="{TemplateBinding Padding}"
+                            Command="{x:Static ScrollBar.LineRightCommand}"
+                            CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                            Focusable="False">
+                            <RepeatButton.Visibility>
+                                <MultiBinding
+                                    FallbackValue="Visibility.Hidden"
+                                    Converter="{StaticResource DukNuk.Converter.TabItem.ScrollVisibility}"
+                                    ConverterParameter="100">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="ComputedHorizontalScrollBarVisibility" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="HorizontalOffset" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ExtentWidth" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ViewportWidth" />
+                                </MultiBinding>
+                            </RepeatButton.Visibility>
+                            <Path
+                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonRight}"
+                                Stroke="{Binding BorderBrush, ElementName=ButtonRight}"
+                                Fill="{Binding Background, ElementName=ButtonRight}"
+                                Effect="{Binding Effect, ElementName=ButtonRight}"
+                                Data="{DynamicResource DukNuk.Size.TabControl.Horizontal.ButtonPath}"
+                                Stretch="None"
+                                RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="180" />
+                                </Path.RenderTransform>
+                            </Path>
+                        </RepeatButton>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--ScrollViewer for a custom vertical TabControl header panel-->
+    <Style
+        x:Key="DukNuk.Style.TabControl.HeaderScrollViewerVertical"
+        TargetType="{x:Type controls:NukScrollViewer}">
+
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
+        <Setter Property="VerticalScrollBarVisibility" Value="Auto" />
+        <Setter Property="InvertMouseWheelAxes" Value="False" />
+        <Setter Property="IgnoreKeyboardScrolling" Value="True" />
+        <Setter Property="CanContentScroll" Value="True" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type controls:NukScrollViewer}">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <ScrollContentPresenter Grid.Row="1" Grid.Column="0"
+                                                Content="{TemplateBinding ScrollViewer.Content}"
+                                                CanContentScroll="{TemplateBinding CanContentScroll}" />
+
+                        <RepeatButton
+                            x:Name="ButtonUp"
+                            Style="{DynamicResource DukNuk.Style.TabControl.HeaderScrollViewerButton}"
+                            Grid.Row="0" Grid.Column="0"
+                            Margin="{TemplateBinding Padding}"
+                            Command="{x:Static ScrollBar.LineUpCommand}"
+                            CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                            Focusable="False">
+                            <RepeatButton.Visibility>
+                                <MultiBinding
+                                    FallbackValue="Visibility.Hidden"
+                                    Converter="{StaticResource DukNuk.Converter.TabItem.ScrollVisibility}"
+                                    ConverterParameter="0">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="ComputedVerticalScrollBarVisibility" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="VerticalOffset" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ExtentHeight" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ViewportHeight" />
+                                </MultiBinding>
+                            </RepeatButton.Visibility>
+                            <Path
+                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonUp}"
+                                Stroke="{Binding BorderBrush, ElementName=ButtonUp}"
+                                Fill="{Binding Background, ElementName=ButtonUp}"
+                                Effect="{Binding Effect, ElementName=ButtonUp}"
+                                Data="{DynamicResource DukNuk.Size.TabControl.Vertical.ButtonPath}"
+                                Stretch="None" />
+                        </RepeatButton>
+                        <RepeatButton
+                            x:Name="ButtonDown"
+                            Style="{DynamicResource DukNuk.Style.TabControl.HeaderScrollViewerButton}"
+                            Grid.Row="2" Grid.Column="0"
+                            Margin="{TemplateBinding Padding}"
+                            Command="{x:Static ScrollBar.LineDownCommand}"
+                            CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}"
+                            Focusable="False">
+                            <RepeatButton.Visibility>
+                                <MultiBinding
+                                    FallbackValue="Visibility.Hidden"
+                                    Converter="{StaticResource DukNuk.Converter.TabItem.ScrollVisibility}"
+                                    ConverterParameter="100">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="ComputedVerticalScrollBarVisibility" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="VerticalOffset" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ExtentHeight" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ViewportHeight" />
+                                </MultiBinding>
+                            </RepeatButton.Visibility>
+                            <Path
+                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonDown}"
+                                Stroke="{Binding BorderBrush, ElementName=ButtonDown}"
+                                Fill="{Binding Background, ElementName=ButtonDown}"
+                                Effect="{Binding Effect, ElementName=ButtonDown}"
+                                Data="{DynamicResource DukNuk.Size.TabControl.Vertical.ButtonPath}"
+                                Stretch="None"
+                                RenderTransformOrigin="0.5,0.5">
+                                <Path.RenderTransform>
+                                    <RotateTransform Angle="180" />
+                                </Path.RenderTransform>
+                            </Path>
+                        </RepeatButton>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <ControlTemplate
+        x:Key="DukNuk.Style.TabControl.HeaderTopBottom"
+        TargetType="{x:Type TabControl}">
+
+        <Grid KeyboardNavigation.TabNavigation="Local">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            
+            <Border
+                x:Name="border"
+                Grid.Row="1" Grid.Column="0"
+                Margin="0"
+                BorderBrush="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{DynamicResource DukNuk.Size.Generic.ControlCornerRadius}">
+            </Border>
+            
+            <Path
+                x:Name="borderPath"
+                Grid.Row="1" Grid.Column="0"
+                Margin="0"
+                Stroke="{TemplateBinding BorderBrush}"
+                StrokeThickness="{TemplateBinding BorderThickness}"
+                Fill="Transparent"
+                SnapsToDevicePixels="True">
+                <Path.Data>
+                    <MultiBinding Converter="{StaticResource DukNuk.Converter.TabControl.BorderPath}"
+                                  FallbackValue="{x:Null}">
+                        <Binding RelativeSource="{RelativeSource AncestorType=TabControl}"/>
+                        <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="SelectedItem" />
+                        <Binding ElementName="border" Path="ActualWidth" />
+                        <Binding ElementName="border" Path="ActualHeight" />
+                        <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="TabStripPlacement" />
+                        <Binding ElementName="borderPath" Path="StrokeThickness" />
+                        <Binding ElementName="tabHeaderPanel" Path="HorizontalOffset" />
+                        <Binding ElementName="tabHeaderPanel" Path="VerticalOffset" />
+                        <Binding ElementName="border" Path="CornerRadius" />
+                    </MultiBinding>
+                </Path.Data>
+            </Path>
+            
+            <controls:NukScrollViewer
+                x:Name="tabHeaderPanel"
+                Grid.Row="0" Grid.Column="0"
+                KeyboardNavigation.TabIndex="1"
+                Panel.ZIndex="1"
+                Style="{DynamicResource DukNuk.Style.TabControl.HeaderScrollViewerHorizontal}">
+                <VirtualizingStackPanel
+                    KeyboardNavigation.TabNavigation="None"
+                    KeyboardNavigation.DirectionalNavigation="Contained"
+                    Orientation="Horizontal"
+                    IsItemsHost="True"
+                    HorizontalAlignment="Stretch"
+                    CanHorizontallyScroll="True"
+                    Margin="{DynamicResource DukNuk.Size.TabControl.Horizontal.PanelMargin}" />
+            </controls:NukScrollViewer>
+
+            <ContentPresenter
+                Grid.Row="1" Grid.Column="0"
+                ContentSource="SelectedContent"
+                Margin="{Binding Padding, 
+                                RelativeSource={RelativeSource AncestorType=TabControl}}"
+                HorizontalAlignment="{Binding HorizontalContentAlignment, 
+                                RelativeSource={RelativeSource AncestorType=TabControl}}"
+                VerticalAlignment="{Binding VerticalContentAlignment, 
+                                RelativeSource={RelativeSource AncestorType=TabControl}}"
+
+                KeyboardNavigation.TabNavigation="Local"
+                KeyboardNavigation.DirectionalNavigation="Contained"
+                KeyboardNavigation.TabIndex="2" />
+
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TabStripPlacement" Value="Bottom">
+                <Setter Property="Grid.Row" TargetName="tabHeaderPanel" Value="2" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate
+        x:Key="DukNuk.Style.TabControl.HeaderLeftRight"
+        TargetType="{x:Type TabControl}">
+
+        <Grid KeyboardNavigation.TabNavigation="Local">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            
+            <Border
+                x:Name="border"
+                Grid.Row="0" Grid.Column="1"
+                Margin="0"
+                BorderBrush="{TemplateBinding Background}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                Background="{TemplateBinding Background}"
+                CornerRadius="{DynamicResource DukNuk.Size.Generic.ControlCornerRadius}">
+            </Border>
+            
+            <Path
+                x:Name="borderPath"
+                Grid.Row="0" Grid.Column="1"
+                Margin="0"
+                Stroke="{TemplateBinding BorderBrush}"
+                StrokeThickness="{TemplateBinding BorderThickness}"
+                Fill="Transparent"
+                SnapsToDevicePixels="True">
+                <Path.Data>
+                    <MultiBinding Converter="{StaticResource DukNuk.Converter.TabControl.BorderPath}"
+                                  FallbackValue="{x:Null}">
+                        <Binding RelativeSource="{RelativeSource AncestorType=TabControl}"/>
+                        <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="SelectedItem" />
+                        <Binding ElementName="border" Path="ActualWidth" />
+                        <Binding ElementName="border" Path="ActualHeight" />
+                        <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="TabStripPlacement" />
+                        <Binding ElementName="borderPath" Path="StrokeThickness" />
+                        <Binding ElementName="tabHeaderPanel" Path="HorizontalOffset" />
+                        <Binding ElementName="tabHeaderPanel" Path="VerticalOffset" />
+                        <Binding ElementName="border" Path="CornerRadius" />
+                    </MultiBinding>
+                </Path.Data>
+            </Path>
+
+            <controls:NukScrollViewer
+                x:Name="tabHeaderPanel"
+                Grid.Row="0" Grid.Column="0"
+                KeyboardNavigation.TabIndex="1"
+                Panel.ZIndex="1"
+                Style="{DynamicResource DukNuk.Style.TabControl.HeaderScrollViewerVertical}">
+                <VirtualizingStackPanel
+                    KeyboardNavigation.TabNavigation="None"
+                    KeyboardNavigation.DirectionalNavigation="Contained"
+                    Orientation="Vertical"
+                    IsItemsHost="True"
+                    VerticalAlignment="Stretch"
+                    Margin="{DynamicResource DukNuk.Size.TabControl.Vertical.PanelMargin}" />
+            </controls:NukScrollViewer>
+
+            <ContentPresenter
+                Grid.Row="0" Grid.Column="1"
+                ContentSource="SelectedContent"
+                Margin="{Binding Padding, 
+                                RelativeSource={RelativeSource AncestorType=TabControl}}"
+                HorizontalAlignment="{Binding HorizontalContentAlignment, 
+                                RelativeSource={RelativeSource AncestorType=TabControl}}"
+                VerticalAlignment="{Binding VerticalContentAlignment, 
+                                RelativeSource={RelativeSource AncestorType=TabControl}}"
+
+                KeyboardNavigation.TabNavigation="Local"
+                KeyboardNavigation.DirectionalNavigation="Contained"
+                KeyboardNavigation.TabIndex="2" />
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="TabStripPlacement" Value="Right">
+                <Setter Property="Grid.Column" TargetName="tabHeaderPanel" Value="2" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style
+        x:Key="{x:Type TabControl}"
+        TargetType="{x:Type TabControl}">
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+        <Setter Property="Padding" Value="6" />
+        <Setter Property="Margin" Value="2" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Width" Value="Auto" />
+
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+
+        <Setter Property="Template"
+                Value="{DynamicResource DukNuk.Style.TabControl.HeaderTopBottom}" />
+
+        <Style.Triggers>
+            <Trigger Property="TabStripPlacement" Value="Left">
+                <Setter Property="Template" 
+                        Value="{DynamicResource DukNuk.Style.TabControl.HeaderLeftRight}" />
+            </Trigger>
+            <Trigger Property="TabStripPlacement" Value="Right">
+                <Setter Property="Template" 
+                        Value="{DynamicResource DukNuk.Style.TabControl.HeaderLeftRight}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style
+        x:Key="{x:Type TabItem}"
+        TargetType="{x:Type TabItem}">
+        <Setter Property="FocusVisualStyle"
+                Value="{DynamicResource DukNuk.Style.FocusVisual}" />
+
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+        <Setter Property="Padding" Value="2" />
+        <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.TabControl.Horizontal.ItemMargin}" />
+        <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.TabControl.Horizontal.ItemMinWidth}" />
+        <Setter Property="MinHeight" Value="{DynamicResource DukNuk.Size.TabControl.Horizontal.ItemMinHeight}" />
+        <Setter Property="controls:TabItemHelper.HeaderBezierSize"
+                Value="{DynamicResource DukNuk.Size.TabControl.Horizontal.ItemBezierSize}" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+
+        <Setter Property="ClipToBounds" Value="False" />
+
+        <Setter Property="Panel.ZIndex">
+            <Setter.Value>
+                <MultiBinding
+                    FallbackValue="0"
+                    Converter="{StaticResource DukNuk.Converter.TabItem.ZIndexReverser}">
+                    <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="Items" />
+                    <Binding RelativeSource="{RelativeSource Self}" />
+                </MultiBinding>
+            </Setter.Value>
+        </Setter>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+
+                    <Grid>
+                        <!-- NOTE: Canvas needed for the path pixel coordinates to work right inside the ScrollViewer parent -->
+                        <Canvas>
+                            <!-- <Path Stroke="Transparent" -->
+                            <!--       StrokeThickness="0" -->
+                            <!--       Fill="{TemplateBinding Background}" -->
+                            <!--       UseLayoutRounding="True"> -->
+                            <!--     <Path.Data> -->
+                            <!--         <MultiBinding -->
+                            <!--             FallbackValue="M 0,0 L 0,1 L 1,1 L 1,0 Z" -->
+                            <!--             Converter="{StaticResource DukNuk.Converter.TabItem.Path}" -->
+                            <!--             ConverterParameter="true"> -->
+                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" /> -->
+                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" /> -->
+                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(controls:TabItemHelper.HeaderBezierSize)" /> -->
+                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsSelected" /> -->
+                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsEnabled" /> -->
+                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsMouseOver" /> -->
+                            <!--             <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="BorderThickness" /> -->
+                            <!--             <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="TabStripPlacement" /> -->
+                            <!--         </MultiBinding> -->
+                            <!--     </Path.Data> -->
+                            <!-- </Path> -->
+                            <Path x:Name="border"
+                                  Stroke="{TemplateBinding BorderBrush}"
+                                  StrokeThickness="{TemplateBinding BorderThickness}"
+                                  Fill="{TemplateBinding Background}"
+                                  UseLayoutRounding="True">
+                                <Path.Data>
+                                    <MultiBinding
+                                        FallbackValue="M 0,0 L 0,1 L 1,1 L 1,0 Z"
+                                        Converter="{StaticResource DukNuk.Converter.TabItem.Path}">
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(controls:TabItemHelper.HeaderBezierSize)" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsSelected" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsEnabled" />
+                                        <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsMouseOver" />
+                                        <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="TabStripPlacement" />
+                                    </MultiBinding>
+                                </Path.Data>
+                            </Path>
+                        </Canvas>
+
+                        <ContentPresenter x:Name="contentPresenter"
+                                          ClipToBounds="True"
+                                          ContentSource="Header"
+                                          Focusable="False"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                          RecognizesAccessKey="True">
+                            <ContentPresenter.Margin>
+                                <MultiBinding
+                                    FallbackValue="0"
+                                    Converter="{StaticResource DukNuk.Converter.TabItem.HeaderPadding}">
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}"
+                                             Path="(controls:TabItemHelper.HeaderBezierSize)" />
+                                    <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="Padding" />
+                                    <Binding RelativeSource="{RelativeSource AncestorType=TabControl}"
+                                             Path="TabStripPlacement" />
+                                </MultiBinding>
+                            </ContentPresenter.Margin>
+                        </ContentPresenter>
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <DataTrigger
+                            Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                            Value="Left">
+                            <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.TabControl.Vertical.ItemMargin}" />
+                            <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.TabControl.Vertical.ItemMinWidth}" />
+                            <Setter Property="MinHeight" Value="{DynamicResource DukNuk.Size.TabControl.Vertical.ItemMinHeight}" />
+                            <Setter Property="controls:TabItemHelper.HeaderBezierSize"
+                                    Value="{DynamicResource DukNuk.Size.TabControl.Horizontal.ItemBezierSize}" />
+                        </DataTrigger>
+                        <DataTrigger
+                            Binding="{Binding Path=TabStripPlacement, RelativeSource={RelativeSource AncestorType=TabControl}}"
+                            Value="Right">
+                            <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.TabControl.Vertical.ItemMargin}" />
+                            <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.TabControl.Vertical.ItemMinWidth}" />
+                            <Setter Property="MinHeight" Value="{DynamicResource DukNuk.Size.TabControl.Vertical.ItemMinHeight}" />
+                            <Setter Property="controls:TabItemHelper.HeaderBezierSize"
+                                    Value="{DynamicResource DukNuk.Size.TabControl.Horizontal.ItemBezierSize}" />
+                        </DataTrigger>
+
+
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsMouseOver" Value="true" />
+                                <Condition Property="IsSelected" Value="false" />
+                            </MultiTrigger.Conditions>
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.MouseOver}" />
+                        </MultiTrigger>
+
+                        <Trigger Property="IsSelected" Value="true">
+                            <Setter Property="Panel.ZIndex"
+                                    Value="65535" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Text.Light.Disabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

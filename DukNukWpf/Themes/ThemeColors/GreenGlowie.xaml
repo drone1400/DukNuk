@@ -1,0 +1,121 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=mscorlib">
+    
+    <system:String x:Key="DukNuk.Theme.Name">Green Glowie</system:String>
+
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Text.Light">#FFFFFF</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Text.Light.Disabled">#A0A0A0</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Text.Dark">#000000</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Text.Dark.Disabled">#505050</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Text.Error">#FF0000</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Text.Hyperlink">#20E0E0</SolidColorBrush>
+    
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.WindowBackground.Light">#76E08A</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.WindowBackground.Medium">#397F2B</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.WindowBackground.Dark">#1D3A18</SolidColorBrush>
+
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.Light">#BAE0AC</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.Light.Bright">#BFFFCA</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.Medium">#346B2F</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.Medium.Bright">#4C7F39</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.Dark">#243A18</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.Dark.Bright">#2B441C</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.Disabled">#3B4938</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Background.DisabledBright">#506850</SolidColorBrush>
+
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Border.Light">#D6FFBF</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Border.Light.Bright">#CEFFCE</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Border.MouseOver">#00EFEF</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Border.KeyboardFocus">#FF6A00</SolidColorBrush>
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.Border.Disabled">#60000000</SolidColorBrush>
+    
+    <!-- "glowing" DropShadowEffects -->
+    
+    <DropShadowEffect x:Key="DukNuk.Colors.Glow.Window"
+                      BlurRadius="12"
+                      RenderingBias="Performance"
+                      ShadowDepth="0"
+                      Color="#FFFFFF" />
+    <DropShadowEffect x:Key="DukNuk.Colors.Glow.Window.Shadow"
+                      BlurRadius="4"
+                      Direction="45"
+                      RenderingBias="Performance"
+                      ShadowDepth="1"
+                      Color="#60000000" />
+    <DropShadowEffect x:Key="DukNuk.Colors.Glow.Control"
+                      BlurRadius="6"
+                      RenderingBias="Performance"
+                      ShadowDepth="0"
+                      Color="#68FF84" />
+    <DropShadowEffect x:Key="DukNuk.Colors.Glow.Control.KeyboardFocus"
+                      BlurRadius="14"
+                      RenderingBias="Performance"
+                      ShadowDepth="0"
+                      Color="#FF84EE" />
+    <DropShadowEffect x:Key="DukNuk.Colors.Glow.Control.MouseOver"
+                      BlurRadius="12"
+                      RenderingBias="Performance"
+                      ShadowDepth="0"
+                      Color="#ADFFAD" />
+    <DropShadowEffect x:Key="DukNuk.Colors.Glow.Control.Disabled"
+                      BlurRadius="4"
+                      RenderingBias="Performance"
+                      ShadowDepth="0"
+                      Color="#60000000" />
+
+    <!-- Brushes for title bar buttons -->
+    
+    <SolidColorBrush x:Key="DukNuk.Colors.Brush.TitleBar.Button.Foreground">#000000</SolidColorBrush>
+    
+    <RadialGradientBrush x:Key="DukNuk.Colors.Brush.TitleBar.Button.Background"
+                         GradientOrigin="0.5,0.5"
+                         Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="#AEE5AE" Offset="0" />
+            <GradientStop Color="#9ED1A3" Offset="0.8" />
+            <GradientStop Color="#798E6C" Offset="1" />
+        </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
+    
+    <RadialGradientBrush
+        x:Key="DukNuk.Colors.Brush.TitleBar.Button.Background.MouseOver"
+        GradientOrigin="0.5,0.5"
+        Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="#A3D19E" Offset="0" />
+            <GradientStop Color="#6F8E6C" Offset="0.8" />
+            <GradientStop Color="#51704E" Offset="1" />
+        </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="DukNuk.Colors.Brush.TitleBar.Button.Background.Pressed"
+                         GradientOrigin="0.5,0.5"
+                         Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="#AEE5B3" Offset="0" />
+            <GradientStop Color="#B7E5AE" Offset="0.6" />
+            <GradientStop Color="#51704E" Offset="1" />
+        </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="DukNuk.Colors.Brush.TitleBar.Button.Background.Disabled"
+                         GradientOrigin="0.5,0.5"
+                         Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="#728E6C" Offset="0" />
+            <GradientStop Color="#728E6C" Offset="0.8" />
+            <GradientStop Color="#728E6C" Offset="1" />
+        </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
+
+    <RadialGradientBrush x:Key="DukNuk.Colors.Brush.TitleBar.Button.BorderBrush"
+                         GradientOrigin="0.5,0.5"
+                         Center="0.5,0.5" RadiusX="0.5" RadiusY="0.5">
+        <RadialGradientBrush.GradientStops>
+            <GradientStop Color="#6C8E6C" Offset="0" />
+            <GradientStop Color="#47543F" Offset="1" />
+        </RadialGradientBrush.GradientStops>
+    </RadialGradientBrush>
+</ResourceDictionary>

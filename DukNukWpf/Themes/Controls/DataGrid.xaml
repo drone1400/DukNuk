@@ -1,0 +1,725 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:converters="clr-namespace:DukNuk.Wpf.Themes.Converters"
+                    xmlns:controls="clr-namespace:DukNuk.Wpf.Controls"
+                    mc:Ignorable="d">
+    <d:ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeColors/DefaultBlue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeSizes.xaml" />
+    </d:ResourceDictionary.MergedDictionaries>
+    
+    <ResourceDictionary.MergedDictionaries>
+        <!-- note, these need to be included here or the BasedOn StaticResource will fail! -->
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/CheckBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/ComboBox.xaml"/>
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/TextBox.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+
+    <converters:NukBoolToVisibilityConverter x:Key="DukNuk.Converter.Bool2Vis" />
+
+    <!--Style and template for the button in the upper left corner of the DataGrid.-->
+    <Style
+        x:Key="DukNuk.Style.DataGrid.SelectAllButton"
+        TargetType="{x:Type Button}">
+
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}" />
+
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium.Bright}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+
+        <Setter Property="MinWidth" Value="20" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Rectangle x:Name="border"
+                                   Stroke="{TemplateBinding BorderBrush}"
+                                   StrokeThickness="{TemplateBinding BorderThickness}"
+                                   Fill="{TemplateBinding Background}" />
+                        <Polygon x:Name="Arrow"
+                                 HorizontalAlignment="Right"
+                                 Margin="8,8,3,3"
+                                 Opacity="1"
+                                 Points="0,10 10,10 10,0"
+                                 Stretch="Uniform"
+                                 VerticalAlignment="Bottom"
+                                 Fill="{TemplateBinding Foreground}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.MouseOver}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="true">
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Light.Bright}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark.Bright}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Text.Light.Disabled}" />
+                            <Setter Property="Visibility" TargetName="Arrow" Value="Collapsed" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="DukNuk.Template.DataGrid.ScrollViewer"
+        TargetType="{x:Type ScrollViewer}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Foreground" Value="Transparent" />
+        <Setter Property="Margin" Value="1" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ScrollViewer}">
+                    <Grid x:Name="Grid" Background="{TemplateBinding Background}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Button
+                            Grid.Row="0" Grid.Column="0"
+                            Style="{DynamicResource DukNuk.Style.DataGrid.SelectAllButton}"
+                            Focusable="false"
+                            Command="{x:Static DataGrid.SelectAllCommand}"
+                            Visibility="{Binding HeadersVisibility, 
+                                ConverterParameter={x:Static DataGridHeadersVisibility.All},  
+                                Converter={x:Static DataGrid.HeadersVisibilityConverter},  
+                                RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                            Width="{Binding CellsPanelHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+
+                        <DataGridColumnHeadersPresenter
+                            x:Name="PART_ColumnHeadersPresenter"
+                            Grid.Row="0" Grid.Column="1"
+                            Visibility="{Binding HeadersVisibility, 
+                                ConverterParameter={x:Static DataGridHeadersVisibility.Column}, 
+                                Converter={x:Static DataGrid.HeadersVisibilityConverter}, 
+                                RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+
+                        <ScrollContentPresenter
+                            x:Name="PART_ScrollContentPresenter"
+                            Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2"
+                            CanContentScroll="{TemplateBinding CanContentScroll}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Content="{TemplateBinding Content}" />
+
+                        <ScrollBar x:Name="PART_VerticalScrollBar"
+                                   Grid.Column="2" Grid.Row="1"
+                                   AutomationProperties.AutomationId="VerticalScrollBar"
+                                   Cursor="Arrow"
+                                   Maximum="{TemplateBinding ScrollableHeight}"
+                                   Minimum="0"
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Value="{Binding VerticalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                   ViewportSize="{TemplateBinding ViewportHeight}" />
+
+                        <Grid Grid.Column="1" Grid.Row="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition
+                                    Width="{Binding NonFrozenColumnsViewportHorizontalOffset, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <ScrollBar
+                                x:Name="PART_HorizontalScrollBar"
+                                Grid.Row="0" Grid.Column="1"
+                                AutomationProperties.AutomationId="HorizontalScrollBar"
+                                Cursor="Arrow"
+                                Maximum="{TemplateBinding ScrollableWidth}"
+                                Minimum="0"
+                                Orientation="Horizontal"
+                                Visibility="{TemplateBinding ComputedHorizontalScrollBarVisibility}"
+                                Value="{Binding HorizontalOffset, Mode=OneWay, RelativeSource={RelativeSource TemplatedParent}}"
+                                ViewportSize="{TemplateBinding ViewportWidth}" />
+                        </Grid>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+    <!--Style and template for the DataGrid.-->
+    <Style
+        x:Key="{x:Type DataGrid}"
+        TargetType="{x:Type DataGrid}">
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
+        <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="VerticalGridLinesBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.DataGrid.BorderThickness}" />
+
+        <Setter Property="RowDetailsVisibilityMode" Value="VisibleWhenSelected" />
+        <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
+        <Setter Property="ScrollViewer.PanningMode" Value="Both" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGrid}">
+                    <Grid>
+                        <Border x:Name="border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}" />
+
+                        <controls:NukScrollViewer
+                            x:Name="DG_ScrollViewer"
+                            Style="{DynamicResource DukNuk.Template.DataGrid.ScrollViewer}"
+                            Focusable="false">
+                            <ItemsPresenter />
+                        </controls:NukScrollViewer>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Text.Light.Disabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsGrouping"
+                     Value="true">
+                <Setter Property="ScrollViewer.CanContentScroll"
+                        Value="false" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    
+    <Style
+        x:Key="{x:Type controls:NukDataGrid}"
+        TargetType="{x:Type controls:NukDataGrid}"
+        BasedOn="{StaticResource {x:Type DataGrid}}">
+    </Style>
+
+    <!--Style and template for the DataGridCell.-->
+    <Style
+        x:Key="DukNuk.Style.DataGrid.Cell"
+        TargetType="{x:Type DataGridCell}">
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}" />
+
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.DataGrid.CellBorderThickness}" />
+
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Width" Value="Auto" />
+
+        <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.DataGrid.MinColWidth}" />
+
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
+                    <Grid>
+                        <!-- NOTE glow effect must be set on border directly and not on control, because otherwise the effect will affect the content presenter too! -->
+                        <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource DukNuk.Size.Generic.ControlCornerRadius}">
+                        </Border>
+                        <!-- Put content presenter over border instead of inside it so it doesn't get affected by the glow blur!-->
+                        <ContentPresenter
+                            Margin="{TemplateBinding Padding}"
+                            HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+                    </Grid>
+
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.MouseOver}" />
+                        </Trigger>
+                        <!-- <Trigger Property="IsSelected" Value="true"> -->
+                        <!--     <Setter Property="Effect" TargetName="border" -->
+                        <!--             Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" /> -->
+                        <!--     <Setter Property="BorderBrush" -->
+                        <!--             Value="{DynamicResource DukNuk.Colors.Brush.Border.Light.Bright}" /> -->
+                        <!--     <Setter Property="Background" -->
+                        <!--             Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark.Bright}" /> -->
+                        <!-- </Trigger> -->
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Effect" TargetName="border"
+                                    Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled}" />
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Text.Light.Disabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style
+        x:Key="DukNuk.Style.DataGrid.Cell.StretchContent"
+        TargetType="{x:Type DataGridCell}"
+        BasedOn="{StaticResource DukNuk.Style.DataGrid.Cell}">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="VerticalContentAlignment" Value="Stretch"/>
+    </Style>
+    
+    <Style
+        x:Key="{x:Type DataGridCell}"
+        TargetType="{x:Type DataGridCell}"
+        BasedOn="{StaticResource DukNuk.Style.DataGrid.Cell}">
+    </Style>
+    
+    <Style
+        x:Key="{x:Type DataGridRow}"
+        TargetType="{x:Type DataGridRow}">
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <!-- <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" /> -->
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.DataGrid.RowBorderThickness}" />
+        <Setter Property="MinHeight" Value="{DynamicResource DukNuk.Size.DataGrid.MinRowHeight}" />
+        <Setter Property="Height" Value="Auto" />
+
+        <Setter Property="Validation.ErrorTemplate" Value="{x:Null}" />
+        <Setter Property="ValidationErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <TextBlock Foreground="{DynamicResource DukNuk.Colors.Brush.Text.Error}"
+                               Margin="2,0,0,0"
+                               Text="!"
+                               VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridRow}">
+                    <Grid>
+                        <Border x:Name="DGR_Border"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}">
+                            <SelectiveScrollingGrid>
+                                <SelectiveScrollingGrid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="*" />
+                                </SelectiveScrollingGrid.ColumnDefinitions>
+                                <SelectiveScrollingGrid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
+                                </SelectiveScrollingGrid.RowDefinitions>
+                                <DataGridCellsPresenter
+                                    Grid.Row="0" Grid.Column="1"
+                                    ItemsPanel="{TemplateBinding ItemsPanel}" />
+                                <DataGridDetailsPresenter
+                                    Grid.Column="1" Grid.Row="1"
+                                    Visibility="{TemplateBinding DetailsVisibility}"
+                                    SelectiveScrollingGrid.SelectiveScrollingOrientation="{Binding AreRowDetailsFrozen, 
+                                    ConverterParameter={x:Static SelectiveScrollingOrientation.Vertical}, 
+                                    Converter={x:Static DataGrid.RowDetailsScrollingConverter}, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                                <DataGridRowHeader
+                                    Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+                                    SelectiveScrollingGrid.SelectiveScrollingOrientation="Vertical"
+                                    Visibility="{Binding HeadersVisibility, 
+                                    ConverterParameter={x:Static DataGridHeadersVisibility.Row}, 
+                                    Converter={x:Static DataGrid.HeadersVisibilityConverter},  
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}" />
+                            </SelectiveScrollingGrid>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="true">
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.MouseOver}" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="true">
+
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Light.Bright}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark.Bright}" />
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="BorderBrush"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
+                            <Setter Property="Foreground"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Text.Light.Disabled}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="DukNuk.Style.DataGrid.RowHeaderGripThumb"
+        TargetType="{x:Type Thumb}">
+        <Setter Property="Height" Value="8" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="SizeNS" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="{x:Type DataGridRowHeader}"
+        TargetType="{x:Type DataGridRowHeader}">
+
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="MinWidth" Value="24" />
+        <Setter Property="MinHeight" Value="24" />
+
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridRowHeader}">
+                    <Grid>
+                        <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource DukNuk.Size.GridView.GridViewCornerRadius}">
+                        </Border>
+
+                        <StackPanel Orientation="Horizontal">
+                            <ContentPresenter VerticalAlignment="Center" />
+                            <Control
+                                Template="{Binding ValidationErrorTemplate,
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}"
+                                Visibility="{Binding (Validation.HasError),
+                                    Converter={StaticResource DukNuk.Converter.Bool2Vis}, 
+                                    RelativeSource={RelativeSource AncestorType={x:Type DataGridRow}}}" />
+                        </StackPanel>
+
+                        <Thumb x:Name="PART_TopHeaderGripper"
+                               Style="{DynamicResource DukNuk.Style.DataGrid.RowHeaderGripThumb}"
+                               VerticalAlignment="Top" />
+                        <Thumb x:Name="PART_BottomHeaderGripper"
+                               Style="{DynamicResource DukNuk.Style.DataGrid.RowHeaderGripThumb}"
+                               VerticalAlignment="Bottom" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Light}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Style and template for the resize control on the DataGridColumnHeader.-->
+    <Style
+        x:Key="DukNuk.Style.DataGrid.ColumnHeaderGripThumb"
+        TargetType="{x:Type Thumb}">
+
+        <Setter Property="Width" Value="8" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Cursor" Value="SizeWE" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border Background="{TemplateBinding Background}"
+                            Padding="{TemplateBinding Padding}" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="{x:Type DataGridColumnHeader}"
+        TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium}" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="MinWidth" Value="24" />
+        <Setter Property="MinHeight" Value="24" />
+
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeader}">
+                    <Grid>
+                        <Border
+                            x:Name="border"
+                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderThickness="{TemplateBinding BorderThickness}"
+                            Background="{TemplateBinding Background}"
+                            CornerRadius="{DynamicResource DukNuk.Size.GridView.GridViewCornerRadius}">
+                        </Border>
+
+
+                        <ContentPresenter Margin="{TemplateBinding Padding}"
+                                          HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                          VerticalAlignment="{TemplateBinding VerticalContentAlignment}" />
+
+                        <Thumb x:Name="PART_LeftHeaderGripper"
+                               HorizontalAlignment="Left"
+                               Style="{DynamicResource DukNuk.Style.DataGrid.ColumnHeaderGripThumb}" />
+                        <Thumb x:Name="PART_RightHeaderGripper"
+                               HorizontalAlignment="Right"
+                               Style="{DynamicResource DukNuk.Style.DataGrid.ColumnHeaderGripThumb}" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background"
+                                    Value="{DynamicResource DukNuk.Colors.Brush.Background.Light}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="{x:Type DataGridColumnHeadersPresenter}"
+        TargetType="{x:Type DataGridColumnHeadersPresenter}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type DataGridColumnHeadersPresenter}">
+                    <Grid>
+                        <DataGridColumnHeader
+                            x:Name="PART_FillerColumnHeader"
+                            IsHitTestVisible="False" />
+                        <ItemsPresenter />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    
+    <!-- =================================================================================================================================================== -->
+    
+    <!-- DataGridCheckBoxColumn -->
+    <Style 
+        x:Key="DukNuk.Style.DataGrid.CheckBox"
+        TargetType="{x:Type CheckBox}"
+        BasedOn="{StaticResource DukNuk.Style.CheckBox}">
+    </Style>
+    <Style 
+        x:Key="DukNuk.Style.DataGrid.CheckBox.Editing"
+        TargetType="{x:Type CheckBox}"
+        BasedOn="{StaticResource DukNuk.Style.CheckBox}">
+    </Style>
+    
+    <Style
+        x:Key="DukNuk.Style.DataGrid.DataGridCheckBoxColumn"
+        TargetType="{x:Type DataGridCheckBoxColumn}">
+        <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.DataGrid.MinColWidth}"/>
+        <!-- NOTE: setting ElementStyle here doesn't seem to work at all... -->
+        <Setter Property="ElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.CheckBox}"/>
+        <Setter Property="EditingElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.CheckBox.Editing}"/>
+    </Style>
+    <Style
+        x:Key="{x:Type DataGridCheckBoxColumn}"
+        TargetType="{x:Type DataGridCheckBoxColumn}"
+        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridCheckBoxColumn}"/>
+    
+    
+    <!-- =================================================================================================================================================== -->
+    
+    <!-- DataGridComboBoxColumn -->
+    <Style 
+        x:Key="DukNuk.Style.DataGrid.ComboBox"
+        TargetType="{x:Type ComboBox}"
+        BasedOn="{StaticResource DukNuk.Style.ComboBox}">
+        
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ComboBox}">
+                    <TextBlock Text="{TemplateBinding Text}" 
+                               Foreground="{TemplateBinding Foreground}"
+                               HorizontalAlignment="Center"
+                               VerticalAlignment="Center"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <Style 
+        x:Key="DukNuk.Style.DataGrid.ComboBox.Editing"
+        TargetType="{x:Type ComboBox}"
+        BasedOn="{StaticResource DukNuk.Style.ComboBox}">
+        
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        
+    </Style>
+    
+    <Style
+        x:Key="DukNuk.Style.DataGrid.DataGridComboBoxColumn"
+        TargetType="{x:Type DataGridComboBoxColumn}">
+        <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.DataGrid.MinColWidth}"/>
+        <!-- NOTE: setting ElementStyle here doesn't seem to work at all... -->
+        <Setter Property="ElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.ComboBox}"/>
+        <Setter Property="EditingElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.ComboBox.Editing}"/>
+    </Style>
+    <Style
+        x:Key="{x:Type DataGridComboBoxColumn}"
+        TargetType="{x:Type DataGridComboBoxColumn}"
+        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridComboBoxColumn}"/>
+    
+    
+    <!-- =================================================================================================================================================== -->
+    
+    <!-- DataGridTextColumn -->
+    <Style 
+        x:Key="DukNuk.Style.DataGrid.TextBox"
+        TargetType="{x:Type TextBlock}">
+        
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="0"/>
+        
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+    </Style>
+    <Style 
+        x:Key="DukNuk.Style.DataGrid.TextBox.Editing"
+        TargetType="{x:Type TextBox}"
+        BasedOn="{StaticResource DukNuk.Style.TextBoxBase}">
+        
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        
+        <Setter Property="Width" Value="Auto"/>
+        <Setter Property="Height" Value="Auto"/>
+        <Setter Property="Margin" Value="0"/>
+        <Setter Property="Padding" Value="1"/>
+        
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+    </Style>
+    
+    <!-- Note: this doesn't seem to work properly for data grid columns... -->
+    <Style
+        x:Key="DukNuk.Style.DataGrid.DataGridTextBoxColumn"
+        TargetType="{x:Type DataGridTextColumn}">
+        <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.DataGrid.MinColWidth}"/>
+        <!-- NOTE: setting ElementStyle here doesn't seem to work at all... -->
+        <Setter Property="ElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.TextBox}"/>
+        <Setter Property="EditingElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.TextBox.Editing}"/>
+    </Style>
+    <Style
+        x:Key="{x:Type DataGridTextColumn}"
+        TargetType="{x:Type DataGridTextColumn}"
+        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridTextBoxColumn}"/>
+    
+    
+    <!-- =================================================================================================================================================== -->
+    
+    <!-- DataGridTemplateColumn -->
+    <Style
+        x:Key="DukNuk.Style.DataGrid.DataGridTemplateColumn"
+        TargetType="{x:Type DataGridTemplateColumn}">
+        <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.DataGrid.MinColWidth}"/>
+        <Setter Property="CellStyle" Value="{DynamicResource DukNuk.Style.DataGrid.Cell.StretchContent}" />
+    </Style>
+    <Style
+        x:Key="{x:Type DataGridTemplateColumn}"
+        TargetType="{x:Type DataGridTemplateColumn}"
+        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridTemplateColumn}"/>
+    
+</ResourceDictionary>

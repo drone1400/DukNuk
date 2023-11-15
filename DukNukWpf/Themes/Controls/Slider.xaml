@@ -1,0 +1,315 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:controls="clr-namespace:DukNuk.Wpf.Controls"
+                    xmlns:converters="clr-namespace:DukNuk.Wpf.Themes.Converters"
+                    mc:Ignorable="d">
+    <d:ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeColors/DefaultBlue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeSizes.xaml" />
+    </d:ResourceDictionary.MergedDictionaries>
+
+    <converters:NukSliderSelectionConverter x:Key="DukNuk.Converters.Slider.SelectionMarginConverter"/>
+    
+    <Style
+        x:Key="DukNuk.Style.Slider.TransparentRepeatButton"
+        TargetType="{x:Type RepeatButton}">
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="Focusable" Value="false" />
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border x:Name="border"
+                            BorderBrush="Transparent"
+                            BorderThickness="1"
+                            Background="Transparent" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style
+        x:Key="DukNuk.Style.Slider.Thumb"
+        TargetType="{x:Type Thumb}">
+
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Light}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+        <Setter Property="IsTabStop" Value="false" />
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Ellipse
+                        Width="{DynamicResource DukNuk.Size.Slider.Thumb.Width}"
+                        Height="{DynamicResource DukNuk.Size.Slider.Thumb.Height}"
+                        StrokeThickness="{TemplateBinding BorderThickness}"
+                        Stroke="{TemplateBinding BorderBrush}"
+                        Fill="{TemplateBinding Background}"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="true">
+                <Setter Property="Background"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Background.Light.Bright}" />
+                <Setter Property="Effect"
+                        Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+            </Trigger>
+            <Trigger Property="IsDragging" Value="true">
+                <Setter Property="Background"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Background.Light.Bright}" />
+                <Setter Property="Effect"
+                        Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
+            </Trigger><Trigger Property="IsEnabled" Value="False">
+                <Setter Property="BorderBrush"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled }" />
+                <Setter Property="Background"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled }" />
+                <Setter Property="Effect"
+                        Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled}" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <ControlTemplate
+        x:Key="DukNuk.Template.Slider.Horizontal"
+        TargetType="{x:Type Slider}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <TickBar
+                x:Name="TopTick"
+                Grid.Row="0"
+                Height="{DynamicResource DukNuk.Size.Slider.TickBar.Thickness}"
+                Margin="0,0,0,2"
+                Placement="Top"
+                Visibility="Collapsed"
+                Fill="{TemplateBinding Foreground}" />
+            <TickBar
+                x:Name="BottomTick"
+                Grid.Row="2"
+                Height="{DynamicResource DukNuk.Size.Slider.TickBar.Thickness}"
+                Margin="0,2,0,0"
+                Placement="Bottom"
+                Visibility="Collapsed"
+                Fill="{TemplateBinding Foreground}" />
+
+            <Border
+                x:Name="TrackBackground"
+                Grid.Row="1"
+                CornerRadius="{DynamicResource DukNuk.Size.Slider.Track.CornerRadius}"
+                Margin="{DynamicResource DukNuk.Size.Slider.Track.Horizontal.Margin}"
+                Width="Auto"
+                Height="{DynamicResource DukNuk.Size.Slider.Track.Width}"
+                BorderBrush="{DynamicResource DukNuk.Colors.Brush.Border.Light}"
+                BorderThickness="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}"
+                Background="{DynamicResource DukNuk.Colors.Brush.Background.Dark}"
+                Effect="{DynamicResource DukNuk.Colors.Glow.Control}"
+                VerticalAlignment="Center">
+                <Border
+                    x:Name="PART_SelectionRange"
+                    Margin="{Binding ActualWidth, ElementName=Thumb,
+                        Converter={StaticResource DukNuk.Converters.Slider.SelectionMarginConverter},
+                        ConverterParameter=False}"
+                    CornerRadius="{DynamicResource DukNuk.Size.Slider.Track.CornerRadius}"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Background="{DynamicResource DukNuk.Colors.Brush.Background.Medium}"
+                    Height="{DynamicResource DukNuk.Size.Slider.Track.Width}"
+                    HorizontalAlignment="Stretch"
+                    Visibility="Hidden" />
+            </Border>
+
+
+            <Track x:Name="PART_Track" Grid.Row="1">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.DecreaseLarge}"
+                                  Style="{DynamicResource DukNuk.Style.Slider.TransparentRepeatButton}" />
+                </Track.DecreaseRepeatButton>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}"
+                                  Style="{DynamicResource DukNuk.Style.Slider.TransparentRepeatButton}" />
+                </Track.IncreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb x:Name="Thumb"
+                           Style="{DynamicResource DukNuk.Style.Slider.Thumb}" />
+                </Track.Thumb>
+            </Track>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="BorderBrush" TargetName="TrackBackground"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled }" />
+                <Setter Property="Background" TargetName="TrackBackground"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled }" />
+                <Setter Property="Effect" TargetName="TrackBackground"
+                        Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled }" />
+
+                <Setter Property="BorderBrush" TargetName="Thumb"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled }" />
+                <Setter Property="Background" TargetName="Thumb"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled }" />
+            </Trigger>
+
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible" />
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <ControlTemplate x:Key="DukNuk.Template.Slider.Vertical" TargetType="{x:Type Slider}">
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+
+            <TickBar
+                x:Name="TopTick"
+                Grid.Column="0"
+                Width="{DynamicResource DukNuk.Size.Slider.TickBar.Thickness}"
+                Margin="0,0,0,2"
+                Placement="Left"
+                Visibility="Collapsed"
+                Fill="{TemplateBinding Foreground}" />
+            <TickBar
+                x:Name="BottomTick"
+                Grid.Column="2"
+                Width="{DynamicResource DukNuk.Size.Slider.TickBar.Thickness}"
+                Margin="0,2,0,0"
+                Placement="Right"
+                Visibility="Collapsed"
+                Fill="{TemplateBinding Foreground}" />
+
+            <Border
+                x:Name="TrackBackground"
+                Grid.Column="1"
+                CornerRadius="{DynamicResource DukNuk.Size.Slider.Track.CornerRadius}"
+                Margin="{DynamicResource DukNuk.Size.Slider.Track.Vertical.Margin}"
+                Width="{DynamicResource DukNuk.Size.Slider.Track.Width}"
+                Height="Auto"
+                BorderBrush="{DynamicResource DukNuk.Colors.Brush.Border.Light}"
+                BorderThickness="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}"
+                Background="{DynamicResource DukNuk.Colors.Brush.Background.Dark}"
+                Effect="{DynamicResource DukNuk.Colors.Glow.Control}"
+                HorizontalAlignment="Center">
+                <Border
+                    x:Name="PART_SelectionRange"
+                    Margin="{Binding ActualHeight, ElementName=Thumb,
+                        Converter={StaticResource DukNuk.Converters.Slider.SelectionMarginConverter},
+                        ConverterParameter=True}"
+                    CornerRadius="{DynamicResource DukNuk.Size.Slider.Track.CornerRadius}"
+                    BorderBrush="Transparent"
+                    BorderThickness="0"
+                    Background="{DynamicResource DukNuk.Colors.Brush.Background.Medium}"
+                    Width="{DynamicResource DukNuk.Size.Slider.Track.Width}"
+                    VerticalAlignment="Stretch"
+                    Visibility="Hidden" />
+            </Border>
+
+            <Track x:Name="PART_Track" Grid.Column="1">
+                <Track.DecreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.DecreaseLarge}"
+                                  Style="{DynamicResource DukNuk.Style.Slider.TransparentRepeatButton}" />
+                </Track.DecreaseRepeatButton>
+                <Track.IncreaseRepeatButton>
+                    <RepeatButton Command="{x:Static Slider.IncreaseLarge}"
+                                  Style="{DynamicResource DukNuk.Style.Slider.TransparentRepeatButton}" />
+                </Track.IncreaseRepeatButton>
+                <Track.Thumb>
+                    <Thumb x:Name="Thumb"
+                           Style="{DynamicResource DukNuk.Style.Slider.Thumb}" />
+                </Track.Thumb>
+            </Track>
+        </Grid>
+
+        <ControlTemplate.Triggers>
+            <Trigger Property="IsEnabled" Value="false">
+                <Setter Property="BorderBrush" TargetName="TrackBackground"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled }" />
+                <Setter Property="Background" TargetName="TrackBackground"
+                        Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled }" />
+                <Setter Property="Effect" TargetName="TrackBackground"
+                        Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled }" />
+            </Trigger>
+
+            <Trigger Property="TickPlacement" Value="TopLeft">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="BottomRight">
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible" />
+            </Trigger>
+            <Trigger Property="TickPlacement" Value="Both">
+                <Setter Property="Visibility" TargetName="TopTick" Value="Visible" />
+                <Setter Property="Visibility" TargetName="BottomTick" Value="Visible" />
+            </Trigger>
+            <Trigger Property="IsSelectionRangeEnabled" Value="true">
+                <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style
+        x:Key="{x:Type Slider}"
+        TargetType="{x:Type Slider}">
+        <!-- <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" /> -->
+        <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}" />
+        <Setter Property="Background" Value="Transparent" />
+
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+
+        <Setter Property="Width" Value="Auto" />
+        <Setter Property="Height" Value="Auto" />
+        <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.Generic.ControlMargin}" />
+        <Setter Property="Padding" Value="0" />
+
+        <Setter Property="Template" Value="{DynamicResource DukNuk.Template.Slider.Horizontal}" />
+
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template" Value="{DynamicResource DukNuk.Template.Slider.Vertical}" />
+                <Setter Property="HorizontalAlignment" Value="Center" />
+                <Setter Property="HorizontalContentAlignment" Value="Center" />
+                <Setter Property="VerticalAlignment" Value="Stretch" />
+                <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+</ResourceDictionary>

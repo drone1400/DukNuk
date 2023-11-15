@@ -1,0 +1,32 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                    xmlns:controls="clr-namespace:DukNuk.Wpf.Controls"
+                    mc:Ignorable="d">
+    <d:ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeColors/DefaultBlue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeSizes.xaml" />
+    </d:ResourceDictionary.MergedDictionaries>
+    
+    <Style 
+        x:Key="DukNuk.Style.FocusVisual.Border" 
+        TargetType="Border">
+        <Setter Property="Margin" Value="{Binding Margin, RelativeSource={RelativeSource AncestorType=Control}}"/>
+        <Setter Property="Effect" Value="{DynamicResource DukNuk.Colors.Glow.Control}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.KeyboardFocus}"/>
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}"/>
+        <Setter Property="CornerRadius" Value="{DynamicResource DukNuk.Size.Generic.ControlCornerRadius}"/>
+    </Style>
+    
+    <Style 
+        x:Key="DukNuk.Style.FocusVisual">
+        <Setter Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Border Style="{DynamicResource DukNuk.Style.FocusVisual.Border}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

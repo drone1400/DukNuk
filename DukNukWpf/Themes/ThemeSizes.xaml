@@ -1,0 +1,137 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:system="clr-namespace:System;assembly=System.Runtime">
+    
+    <!-- Title bar ================================================================================================= -->
+    <Thickness x:Key="DukNuk.Size.Window.ResizeBorderThickness">16</Thickness>
+    <Thickness x:Key="DukNuk.Size.Window.GlowBorderThickness">10</Thickness>
+    <CornerRadius x:Key="DukNuk.Size.Window.Content.CornerRadius">8</CornerRadius>
+    <Thickness x:Key="DukNuk.Size.Window.Content.BorderThickness">1.5</Thickness>
+    <Thickness x:Key="DukNuk.Size.Window.StatusBar.Margin">0,8,0,0</Thickness>
+    <CornerRadius x:Key="DukNuk.Size.Window.StatusBar.CornerRadius">4</CornerRadius>
+    <Thickness x:Key="DukNuk.Size.Window.StatusBar.BorderThickness">1.5</Thickness>
+    
+    <system:Double x:Key="DukNuk.Size.TitleBar.ButtonSize">26</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.ButtonFontSize">16</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.Height">50</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.QuadraticBezierRadius">12</system:Double>
+    
+    <!-- NOTE: set gap to NaN to make it automatically proportional -->
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierLeft.Gap">NaN</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierLeft.Width">60</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierLeft.Height">20</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierLeft.Offset">8</system:Double>
+    
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierRight.Gap">160</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierRight.Width">80</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierRight.Height">46</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.BezierRight.Offset">8</system:Double>
+    
+    <system:Double x:Key="DukNuk.Size.TitleBar.CornerRight.Width">40</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.CornerRight.Height">40</system:Double>
+    <system:Double x:Key="DukNuk.Size.TitleBar.CornerRight.QuadraticBezierRadius">6</system:Double>
+    
+    <!-- Common ==================================================================================================== -->
+    <CornerRadius x:Key="DukNuk.Size.Generic.ControlCornerRadius">5</CornerRadius>
+    <Thickness x:Key="DukNuk.Size.Generic.ControlMargin">4</Thickness>
+    <system:Double x:Key="DukNuk.Size.Generic.ControlStrokeThickness">1</system:Double>
+    <Thickness x:Key="DukNuk.Size.Generic.ControlBorderThickness">1</Thickness>
+    <!-- note, used for Buttons/ComboBoxes/TextBoxes -->
+    <system:Double x:Key="DukNuk.Size.Generic.ButtonHeight">24</system:Double>
+    
+    <!-- Status Bar ================================================================================================ -->
+    <Thickness x:Key="DukNuk.Size.Menu.MenuItem.Margin">3,1,1,1</Thickness>
+    <Thickness x:Key="DukNuk.Size.Menu.Separator.Margin">1</Thickness>
+    <Thickness x:Key="DukNuk.Size.Menu.TopLevel.Margin">4,2</Thickness>
+    <Thickness x:Key="DukNuk.Size.Menu.SubMenu.ContentMargin">4,2</Thickness>
+    <Thickness x:Key="DukNuk.Size.Menu.SubMenu.Icon.Margin">4,2</Thickness>
+    <system:Double x:Key="DukNuk.Size.Menu.SubMenu.Icon.MinWidth">32</system:Double>
+    <Thickness x:Key="DukNuk.Size.Menu.SubMenu.InputGesture.Margin">4,2</Thickness>
+    <system:Double x:Key="DukNuk.Size.Menu.SubMenu.InputGesture.MinWidth">16</system:Double>
+    <system:Double x:Key="DukNuk.Size.Menu.SubMenu.CheckMark.Size">11</system:Double>
+    
+    <!-- Status Bar ================================================================================================ -->
+    <Thickness x:Key="DukNuk.Size.StatusBar.StatusBarItem.Margin">3,1,1,1</Thickness>
+    <Thickness x:Key="DukNuk.Size.StatusBar.Separator.Margin">1</Thickness>
+    
+    <!-- Tooltip =================================================================================================== -->
+    <Thickness x:Key="DukNuk.Size.Tooltip.Margin">5</Thickness>
+    <Thickness x:Key="DukNuk.Size.Tooltip.Padding">5</Thickness>
+    
+    <!-- Progress Bar ============================================================================================== -->
+    <system:Double x:Key="DukNuk.Size.ProgressBar.Height">12</system:Double>
+    <Thickness x:Key="DukNuk.Size.ProgressBar.Fill.Margin">0,1,2,1</Thickness>
+    
+    <!-- CheckBox ================================================================================================== -->
+    <system:Double x:Key="DukNuk.Size.CheckBox.Size">18</system:Double>
+    <Thickness x:Key="DukNuk.Size.CheckBox.Margin">4,0</Thickness>
+    
+    <!-- Combo Box ================================================================================================= -->
+    <system:Double x:Key="DukNuk.Size.ComboBox.ToggleWidth">24</system:Double>
+    <GridLength x:Key="DukNuk.Size.ComboBox.ToggleWidthGridLength">24</GridLength>
+    <Geometry x:Key="DukNuk.Size.ComboBox.ArrowDownGeometry">M 0,0 L 2.5,5 L 5,0 Z</Geometry>
+    
+    <!-- Scroll viewer / scroll bar ================================================================================ -->
+    <system:Double x:Key="DukNuk.Size.ScrollBar.Width">18</system:Double>
+    <system:Double x:Key="DukNuk.Size.ScrollBar.ButtonSize">16</system:Double>
+    <CornerRadius x:Key="DukNuk.Size.Scrollbar.Track.CornerRadius">4</CornerRadius>
+    <Thickness x:Key="DukNuk.Size.Scrollbar.Track.Horizontal.Margin">5</Thickness>
+    <Thickness x:Key="DukNuk.Size.Scrollbar.Track.Vertical.Margin">5</Thickness>
+    <Thickness x:Key="DukNuk.Size.Scrollbar.Thumb.Horizontal.Margin">3</Thickness>
+    <Thickness x:Key="DukNuk.Size.Scrollbar.Thumb.Vertical.Margin">3</Thickness>
+    <Geometry x:Key="DukNuk.Size.ScrollBar.ArrowDownGeometry">M 0,0 L 2.5,5 L 5,0 Z</Geometry>
+    
+    <!-- Slider ==================================================================================================== -->
+    <system:Double x:Key="DukNuk.Size.Slider.Thumb.Width">16</system:Double>
+    <system:Double x:Key="DukNuk.Size.Slider.Thumb.Height">16</system:Double>
+    <system:Double x:Key="DukNuk.Size.Slider.Track.Width">6</system:Double>
+    <CornerRadius x:Key="DukNuk.Size.Slider.Track.CornerRadius">4</CornerRadius>
+    <Thickness x:Key="DukNuk.Size.Slider.Track.Horizontal.Margin">0,4</Thickness>
+    <Thickness x:Key="DukNuk.Size.Slider.Track.Vertical.Margin">4,0</Thickness>
+    <system:Double x:Key="DukNuk.Size.Slider.TickBar.Thickness">4</system:Double>
+    
+    <!-- Expander ================================================================================================== -->
+    <system:Double x:Key="DukNuk.Size.Expander.ButtonSize">16</system:Double>
+    <Geometry x:Key="DukNuk.Size.Expander.ArrowDownGeometry">M 0,0 L 2.5,5 L 5,0 Z</Geometry>
+    <GridLength x:Key="DukNuk.Size.Expander.HeaderLeftSide">30</GridLength>
+    
+    <!-- Tree View ================================================================================================= -->
+    <system:Double x:Key="DukNuk.Size.TreeView.ButtonSize">16</system:Double>
+    <GridLength x:Key="DukNuk.Size.TreeView.ButtonSize.GridLength">20</GridLength>
+    <Geometry x:Key="DukNuk.Size.TreeView.ArrowDownGeometry">M 0,0 L 2.5,5 L 5,0 Z</Geometry>
+    
+    <!-- List View ================================================================================================= -->
+    <system:Double x:Key="DukNuk.Size.ListView.GridView.ThumbWidth">2</system:Double>
+    <CornerRadius x:Key="DukNuk.Size.ListView.GridView.CornerRadius">0</CornerRadius>
+    <system:Double x:Key="DukNuk.Size.ListView.MinColWidth">100</system:Double>
+    
+    <!-- Data Grid -================================================================================================= -->
+    <CornerRadius x:Key="DukNuk.Size.DataGrid.CornerRadius">0</CornerRadius>
+    <system:Double x:Key="DukNuk.Size.DataGrid.MinColWidth">50</system:Double>
+    <system:Double x:Key="DukNuk.Size.DataGrid.MinRowHeight">20</system:Double>
+    <Thickness x:Key="DukNuk.Size.DataGrid.RowBorderThickness">1</Thickness>
+    <Thickness x:Key="DukNuk.Size.DataGrid.CellBorderThickness">1</Thickness>
+    <Thickness x:Key="DukNuk.Size.DataGrid.BorderThickness">1</Thickness>
+    
+    <!-- Tab Control =============================================================================================== -->
+    <system:Double x:Key="DukNuk.Size.TabControl.ScrollButtonSize">24</system:Double>
+    <Thickness x:Key="DukNuk.Size.TabControl.Horizontal.ItemMargin">-6,0,-10,0</Thickness>
+    <Thickness x:Key="DukNuk.Size.TabControl.Horizontal.PanelMargin">8,0</Thickness>
+    <system:Double x:Key="DukNuk.Size.TabControl.Horizontal.ItemBezierSize">14</system:Double>
+    <system:Double x:Key="DukNuk.Size.TabControl.Horizontal.ItemMinWidth">120</system:Double>
+    <system:Double x:Key="DukNuk.Size.TabControl.Horizontal.ItemMinHeight">24</system:Double>
+    <Geometry x:Key="DukNuk.Size.TabControl.Horizontal.ButtonPath">M 6,0 L 34,0 L 36,2 L 36,13 L 34,15 L 6,15 L 0,7.5 Z</Geometry>
+    <Thickness x:Key="DukNuk.Size.TabControl.Vertical.ItemMargin">0,-10,0,-8</Thickness>
+    <Thickness x:Key="DukNuk.Size.TabControl.Vertical.PanelMargin">0,8</Thickness>
+    <system:Double x:Key="DukNuk.Size.TabControl.Vertical.ItemBezierSize">10</system:Double>
+    <system:Double x:Key="DukNuk.Size.TabControl.Vertical.ItemMinWidth">120</system:Double>
+    <system:Double x:Key="DukNuk.Size.TabControl.Vertical.ItemMinHeight">30</system:Double>
+    <Geometry x:Key="DukNuk.Size.TabControl.Vertical.ButtonPath">M 6,0 L 34,0 L 36,2 L 36,13 L 34,15 L 6,15 L 0,7.5 Z</Geometry>
+    
+    <!-- Counter Control =========================================================================================== -->
+    <Thickness x:Key="DukNuk.Size.NukCounter.Button.Margin.Left">2,2,4,2</Thickness>
+    <Thickness x:Key="DukNuk.Size.NukCounter.Button.Margin.Right">4,2,2,2</Thickness>
+    <system:Double x:Key="DukNuk.Size.NukCounter.Button.Width">18</system:Double>
+    <system:Double x:Key="DukNuk.Size.NukCounter.Button.Height">18</system:Double>
+    
+</ResourceDictionary>
