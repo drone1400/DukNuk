@@ -94,7 +94,7 @@
     </Style>
 
     <Style
-        x:Key="{x:Type Expander}"
+        x:Key="DukNuk.Style.Expander"
         TargetType="{x:Type Expander}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />

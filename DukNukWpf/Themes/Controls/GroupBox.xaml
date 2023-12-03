@@ -12,7 +12,7 @@
     <BorderGapMaskConverter x:Key="DukNuk.Converter.GroupBox.BorderGapMaskConverter" />
 
     <Style 
-        x:Key="{x:Type GroupBox}"
+        x:Key="DukNuk.Style.GroupBox"
         TargetType="{x:Type GroupBox}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />

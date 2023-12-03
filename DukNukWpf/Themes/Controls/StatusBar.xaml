@@ -10,7 +10,7 @@
     </d:ResourceDictionary.MergedDictionaries>
 
     <Style
-        x:Key="{x:Type StatusBar}"
+        x:Key="DukNuk.Style.StatusBar"
         TargetType="{x:Type StatusBar}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -52,7 +52,7 @@
     </Style>
 
     <Style
-        x:Key="{x:Static StatusBar.SeparatorStyleKey}"
+        x:Key="DukNuk.Style.StatusBar.Separator"
         TargetType="{x:Type Separator}">
         <Setter Property="IsEnabled" Value="True" />
         <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.StatusBar.Separator.Margin}" />

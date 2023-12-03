@@ -9,7 +9,7 @@
     </d:ResourceDictionary.MergedDictionaries>
     
     <Style 
-        x:Key="{x:Type Label}"
+        x:Key="DukNuk.Style.Label"
         TargetType="Label">
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -22,7 +22,7 @@
         <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
     </Style>
     
-    <Style x:Key="{x:Type Hyperlink}"
+    <Style x:Key="DukNuk.Style.Hyperlink"
            TargetType="{x:Type Hyperlink}">
         <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Hyperlink}" />
     </Style>

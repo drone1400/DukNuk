@@ -85,7 +85,7 @@
     </Style>
 
     <Style
-        x:Key="DukNuk.Template.DataGrid.ScrollViewer"
+        x:Key="DukNuk.DataGrid.ScrollViewerTemplate"
         TargetType="{x:Type ScrollViewer}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="Transparent" />
@@ -169,7 +169,7 @@
 
     <!--Style and template for the DataGrid.-->
     <Style
-        x:Key="{x:Type DataGrid}"
+        x:Key="DukNuk.Style.DataGrid"
         TargetType="{x:Type DataGrid}">
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
         <Setter Property="HorizontalGridLinesBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
@@ -193,7 +193,7 @@
 
                         <controls:NukScrollViewer
                             x:Name="DG_ScrollViewer"
-                            Style="{DynamicResource DukNuk.Template.DataGrid.ScrollViewer}"
+                            Style="{DynamicResource DukNuk.DataGrid.ScrollViewerTemplate}"
                             Focusable="false">
                             <ItemsPresenter />
                         </controls:NukScrollViewer>
@@ -220,12 +220,6 @@
         </Style.Triggers>
     </Style>
     
-    <Style
-        x:Key="{x:Type controls:NukDataGrid}"
-        TargetType="{x:Type controls:NukDataGrid}"
-        BasedOn="{StaticResource {x:Type DataGrid}}">
-    </Style>
-
     <!--Style and template for the DataGridCell.-->
     <Style
         x:Key="DukNuk.Style.DataGrid.Cell"
@@ -308,13 +302,7 @@
     </Style>
     
     <Style
-        x:Key="{x:Type DataGridCell}"
-        TargetType="{x:Type DataGridCell}"
-        BasedOn="{StaticResource DukNuk.Style.DataGrid.Cell}">
-    </Style>
-    
-    <Style
-        x:Key="{x:Type DataGridRow}"
+        x:Key="DukNuk.Style.DataGridRow"
         TargetType="{x:Type DataGridRow}">
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
         <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
@@ -415,7 +403,7 @@
     </Style>
 
     <Style
-        x:Key="{x:Type DataGridRowHeader}"
+        x:Key="DukNuk.Style.DataGridRowHeader"
         TargetType="{x:Type DataGridRowHeader}">
 
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium}" />
@@ -494,7 +482,7 @@
     </Style>
 
     <Style
-        x:Key="{x:Type DataGridColumnHeader}"
+        x:Key="DukNuk.Style.DataGridColumnHeader"
         TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium}" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -549,7 +537,7 @@
     </Style>
 
     <Style
-        x:Key="{x:Type DataGridColumnHeadersPresenter}"
+        x:Key="DukNuk.Style.DataGridColumnHeadersPresenter"
         TargetType="{x:Type DataGridColumnHeadersPresenter}">
         <Setter Property="Template">
             <Setter.Value>
@@ -579,7 +567,6 @@
         TargetType="{x:Type CheckBox}"
         BasedOn="{StaticResource DukNuk.Style.CheckBox}">
     </Style>
-    
     <Style
         x:Key="DukNuk.Style.DataGrid.DataGridCheckBoxColumn"
         TargetType="{x:Type DataGridCheckBoxColumn}">
@@ -588,10 +575,7 @@
         <Setter Property="ElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.CheckBox}"/>
         <Setter Property="EditingElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.CheckBox.Editing}"/>
     </Style>
-    <Style
-        x:Key="{x:Type DataGridCheckBoxColumn}"
-        TargetType="{x:Type DataGridCheckBoxColumn}"
-        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridCheckBoxColumn}"/>
+
     
     
     <!-- =================================================================================================================================================== -->
@@ -643,7 +627,6 @@
         <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
         
     </Style>
-    
     <Style
         x:Key="DukNuk.Style.DataGrid.DataGridComboBoxColumn"
         TargetType="{x:Type DataGridComboBoxColumn}">
@@ -652,11 +635,6 @@
         <Setter Property="ElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.ComboBox}"/>
         <Setter Property="EditingElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.ComboBox.Editing}"/>
     </Style>
-    <Style
-        x:Key="{x:Type DataGridComboBoxColumn}"
-        TargetType="{x:Type DataGridComboBoxColumn}"
-        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridComboBoxColumn}"/>
-    
     
     <!-- =================================================================================================================================================== -->
     
@@ -692,7 +670,6 @@
         
         <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
     </Style>
-    
     <!-- Note: this doesn't seem to work properly for data grid columns... -->
     <Style
         x:Key="DukNuk.Style.DataGrid.DataGridTextBoxColumn"
@@ -702,10 +679,6 @@
         <Setter Property="ElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.TextBox}"/>
         <Setter Property="EditingElementStyle" Value="{DynamicResource DukNuk.Style.DataGrid.TextBox.Editing}"/>
     </Style>
-    <Style
-        x:Key="{x:Type DataGridTextColumn}"
-        TargetType="{x:Type DataGridTextColumn}"
-        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridTextBoxColumn}"/>
     
     
     <!-- =================================================================================================================================================== -->
@@ -717,9 +690,5 @@
         <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.DataGrid.MinColWidth}"/>
         <Setter Property="CellStyle" Value="{DynamicResource DukNuk.Style.DataGrid.Cell.StretchContent}" />
     </Style>
-    <Style
-        x:Key="{x:Type DataGridTemplateColumn}"
-        TargetType="{x:Type DataGridTemplateColumn}"
-        BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridTemplateColumn}"/>
     
 </ResourceDictionary>

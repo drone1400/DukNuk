@@ -102,7 +102,7 @@
     </Style>
 
     <ControlTemplate 
-        x:Key="DukNuk.Template.ComboBox" 
+        x:Key="DukNuk.Style.ComboBoxTemplate" 
         TargetType="{x:Type ComboBox}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -174,7 +174,7 @@
     </ControlTemplate>
 
     <ControlTemplate 
-        x:Key="DukNuk.Template.EditableComboBox" 
+        x:Key="DukNuk.Style.EditableComboBoxTemplate" 
         TargetType="{x:Type ComboBox}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -276,24 +276,18 @@
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="False" />
 
-        <Setter Property="Template" Value="{DynamicResource DukNuk.Template.ComboBox}" />
+        <Setter Property="Template" Value="{DynamicResource DukNuk.Style.ComboBoxTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsEditable" Value="true">
                 <Setter Property="IsTabStop" Value="false" />
                 <Setter Property="Padding" Value="2" />
-                <Setter Property="Template" Value="{DynamicResource DukNuk.Template.EditableComboBox}" />
+                <Setter Property="Template" Value="{DynamicResource DukNuk.Style.EditableComboBoxTemplate}" />
             </Trigger>
         </Style.Triggers>
     </Style>
     
-    <Style 
-        x:Key="{x:Type ComboBox}"
-        TargetType="{x:Type ComboBox}"
-        BasedOn="{StaticResource DukNuk.Style.ComboBox}">
-    </Style>
-
     <Style
-        x:Key="{x:Type ComboBoxItem}" 
+        x:Key="DukNuk.Style.ComboBoxItem" 
         TargetType="{x:Type ComboBoxItem}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}"/>
         

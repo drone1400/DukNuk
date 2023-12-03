@@ -13,24 +13,45 @@
     <MenuScrollingVisibilityConverter x:Key="DukNuk.Converter.MenuScrollingVisibility" />
     <converters:NukCheckBoxPathConverter x:Key="DukNuk.Converter.Menu.CheckMark.Path" />
 
-    <!-- ContextMenu -->
-    <!-- <Style x:Key="ThemeStyleContextMenu" TargetType="{x:Type ContextMenu}"> -->
-    <!--     <Setter Property="OverridesDefaultStyle" Value="True" /> -->
-    <!--     <Setter Property="Grid.IsSharedSizeScope" Value="true" /> -->
-    <!--     <Setter Property="HasDropShadow" Value="True" /> -->
-    <!--     <Setter Property="Template"> -->
-    <!--         <Setter.Value> -->
-    <!--             <ControlTemplate TargetType="{x:Type ContextMenu}"> -->
-    <!--                 <Border x:Name="Border" Background="{DynamicResource ThemeBrushBackgroundControlLevel1}" BorderThickness="1" BorderBrush="{DynamicResource ThemeBrushBorder}"> -->
-    <!--                     <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" /> -->
-    <!--                 </Border> -->
-    <!--             </ControlTemplate> -->
-    <!--         </Setter.Value> -->
-    <!--     </Setter> -->
-    <!-- </Style> -->
+    <Style 
+        x:Key="DukNuk.Style.ContextMenu" 
+        TargetType="{x:Type ContextMenu}">
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="Grid.IsSharedSizeScope" Value="true" />
+        
+        <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />
+        <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
+        <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
+        <Setter Property="BorderThickness" Value="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}" />
+
+        <!-- <Setter Property="FontFamily" Value="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}" /> -->
+        <!-- <Setter Property="FontSize" Value="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}" /> -->
+        <!-- <Setter Property="FontStyle" Value="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}" /> -->
+        <!-- <Setter Property="FontWeight" Value="{DynamicResource {x:Static SystemFonts.MenuFontWeightKey}}" /> -->
+
+        <Setter Property="HorizontalAlignment" Value="Left" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        
+        <Setter Property="HasDropShadow" Value="True" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ContextMenu}">
+                    <Border 
+                        Background="{DynamicResource DukNuk.Colors.Brush.Background.Dark}"
+                        BorderBrush="{DynamicResource DukNuk.Colors.Brush.Border.Light}"
+                        BorderThickness="{DynamicResource DukNuk.Size.Generic.ControlBorderThickness}"
+                        CornerRadius="{DynamicResource DukNuk.Size.Generic.ControlCornerRadius}">
+                        <StackPanel IsItemsHost="True" KeyboardNavigation.DirectionalNavigation="Cycle" />
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style
-        x:Key="{x:Static MenuItem.SeparatorStyleKey}"
+        x:Key="DukNuk.Style.Menu.Separator"
         TargetType="{x:Type Separator}">
         <Setter Property="IsEnabled" Value="True" />
         <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.Menu.Separator.Margin}" />
@@ -210,80 +231,10 @@
             </Setter.Value>
         </Setter>
     </Style>
-    <!-- -->
-    <!-- <Style x:Key="ThemeStyleMenuScrollViewer" TargetType="{x:Type ScrollViewer}" BasedOn="{x:Null}"> -->
-    <!--     <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" /> -->
-    <!--     <Setter Property="VerticalScrollBarVisibility" Value="Auto" /> -->
-    <!-- -->
-    <!--     <Setter Property="Template"> -->
-    <!--         <Setter.Value> -->
-    <!--             <ControlTemplate TargetType="{x:Type ScrollViewer}"> -->
-    <!--                 <Grid> -->
-    <!--                     <Grid.ColumnDefinitions> -->
-    <!--                         <ColumnDefinition Width="*" /> -->
-    <!--                     </Grid.ColumnDefinitions> -->
-    <!--                     <Grid.RowDefinitions> -->
-    <!--                         <RowDefinition Height="Auto" /> -->
-    <!--                         <RowDefinition Height="*" /> -->
-    <!--                         <RowDefinition Height="Auto" /> -->
-    <!--                     </Grid.RowDefinitions> -->
-    <!--                     <Border Grid.Row="1" Grid.Column="0"> -->
-    <!--                         <ScrollContentPresenter Margin="{TemplateBinding Padding}" /> -->
-    <!--                     </Border> -->
-    <!--                     <RepeatButton Style="{DynamicResource ThemeStyleScrollBarButton}" -->
-    <!--                                   Grid.Row="0" -->
-    <!--                                   Grid.Column="0" -->
-    <!--                                   Command="{x:Static ScrollBar.LineUpCommand}" -->
-    <!--                                   CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" -->
-    <!--                                   Focusable="False"> -->
-    <!--                         <RepeatButton.Visibility> -->
-    <!--                             <MultiBinding FallbackValue="Visibility.Collapsed" -->
-    <!--                                           Converter="{StaticResource DukNuk.Converter.MenuScrollingVisibility}" -->
-    <!--                                           ConverterParameter="0"> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" -->
-    <!--                                          Path="ComputedVerticalScrollBarVisibility" /> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="VerticalOffset" /> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ExtentHeight" /> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ViewportHeight" /> -->
-    <!--                             </MultiBinding> -->
-    <!--                         </RepeatButton.Visibility> -->
-    <!--                         <Path x:Name="ArrowTop" -->
-    <!--                               Data="M 0,4 C0,4 0,6 0,6 0,6 3.5,2.5 3.5,2.5 3.5,2.5 7,6 7,6 7,6 7,4 7,4 7,4 3.5,0.5 3.5,0.5 3.5,0.5 0,4 0,4 z" -->
-    <!--                               Fill="{DynamicResource ThemeBrushText}" -->
-    <!--                               Margin="3,4,3,3" -->
-    <!--                               Stretch="Uniform" /> -->
-    <!--                     </RepeatButton> -->
-    <!--                     <RepeatButton Style="{DynamicResource ThemeStyleScrollBarButton}" -->
-    <!--                                   Grid.Row="2" Grid.Column="0" -->
-    <!--                                   Command="{x:Static ScrollBar.LineDownCommand}" -->
-    <!--                                   CommandTarget="{Binding RelativeSource={RelativeSource TemplatedParent}}" -->
-    <!--                                   Focusable="False"> -->
-    <!--                         <RepeatButton.Visibility> -->
-    <!--                             <MultiBinding FallbackValue="Visibility.Collapsed" -->
-    <!--                                           Converter="{StaticResource DukNuk.Converter.MenuScrollingVisibility}" -->
-    <!--                                           ConverterParameter="100"> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" -->
-    <!--                                          Path="ComputedVerticalScrollBarVisibility" /> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="VerticalOffset" /> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ExtentHeight" /> -->
-    <!--                                 <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ViewportHeight" /> -->
-    <!--                             </MultiBinding> -->
-    <!--                         </RepeatButton.Visibility> -->
-    <!--                         <Path x:Name="ArrowBottom" -->
-    <!--                               Data="M 0,2.5 C0,2.5 0,0.5 0,0.5 0,0.5 3.5,4 3.5,4 3.5,4 7,0.5 7,0.5 7,0.5 7,2.5 7,2.5 7,2.5 3.5,6 3.5,6 3.5,6 0,2.5 0,2.5 z" -->
-    <!--                               Fill="{DynamicResource ThemeBrushText}" -->
-    <!--                               Margin="3,4,3,3" -->
-    <!--                               Stretch="Uniform" /> -->
-    <!--                     </RepeatButton> -->
-    <!--                 </Grid> -->
-    <!--             </ControlTemplate> -->
-    <!--         </Setter.Value> -->
-    <!--     </Setter> -->
-    <!-- </Style> -->
 
     <!-- TopLevelHeader -->
     <ControlTemplate
-        x:Key="{x:Static MenuItem.TopLevelHeaderTemplateKey}"
+        x:Key="DukNuk.Style.MenuItem.TopLevelHeaderTemplate"
         TargetType="{x:Type MenuItem}">
         <Grid>
             <Border
@@ -331,7 +282,7 @@
 
     <!-- TopLevelItem -->
     <ControlTemplate
-        x:Key="{x:Static MenuItem.TopLevelItemTemplateKey}"
+        x:Key="DukNuk.Style.MenuItem.TopLevelItemTemplate"
         TargetType="{x:Type MenuItem}">
         <Grid>
             <Border
@@ -360,7 +311,7 @@
 
     <!-- SubmenuItem -->
     <ControlTemplate
-        x:Key="{x:Static MenuItem.SubmenuItemTemplateKey}"
+        x:Key="DukNuk.Style.MenuItem.SubmenuItemTemplate"
         TargetType="{x:Type MenuItem}">
 
         <Grid>
@@ -451,7 +402,7 @@
     </ControlTemplate>
 
     <ControlTemplate
-        x:Key="{x:Static MenuItem.SubmenuHeaderTemplateKey}"
+        x:Key="DukNuk.Style.MenuItemSubmenuHeaderTemplate"
         TargetType="{x:Type MenuItem}">
         <Grid>
             <Grid.ColumnDefinitions>
@@ -532,7 +483,7 @@
 
     <!-- MenuItem -->
     <Style
-        x:Key="{x:Type MenuItem}"
+        x:Key="DukNuk.Style.MenuItem"
         TargetType="{x:Type MenuItem}">
 
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}" />
@@ -554,7 +505,7 @@
         <Setter Property="Padding" Value="0" />
 
         <Setter Property="Template"
-                Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                Value="{DynamicResource DukNuk.Style.MenuItem.SubmenuItemTemplate}" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground"
@@ -563,24 +514,24 @@
 
             <Trigger Property="Role" Value="TopLevelHeader">
                 <Setter Property="Template"
-                        Value="{DynamicResource {ComponentResourceKey ResourceId=TopLevelHeaderTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                        Value="{DynamicResource DukNuk.Style.MenuItem.TopLevelHeaderTemplate}" />
                 <Setter Property="Padding" Value="6,0" />
             </Trigger>
             <Trigger Property="Role" Value="TopLevelItem">
                 <Setter Property="Template"
-                        Value="{DynamicResource {ComponentResourceKey ResourceId=TopLevelItemTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                        Value="{DynamicResource DukNuk.Style.MenuItem.TopLevelItemTemplate}" />
                 <Setter Property="Padding" Value="6,0" />
             </Trigger>
             <Trigger Property="Role" Value="SubmenuHeader">
                 <Setter Property="Template"
-                        Value="{DynamicResource {ComponentResourceKey ResourceId=SubmenuHeaderTemplateKey, TypeInTargetAssembly={x:Type MenuItem}}}" />
+                        Value="{DynamicResource DukNuk.Style.MenuItemSubmenuHeaderTemplate}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <!-- Menu -->
     <Style
-        x:Key="{x:Type Menu}"
+        x:Key="DukNuk.Style.Menu"
         TargetType="{x:Type Menu}">
 
         <Setter Property="Foreground" Value="{DynamicResource DukNuk.Colors.Brush.Text.Light}" />

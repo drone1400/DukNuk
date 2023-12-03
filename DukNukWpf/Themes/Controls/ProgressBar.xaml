@@ -11,7 +11,7 @@
 
 
     <Style
-        x:Key="{x:Type ProgressBar}"
+        x:Key="DukNuk.Style.ProgressBar"
         TargetType="{x:Type ProgressBar}">
 
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark.Bright}" />

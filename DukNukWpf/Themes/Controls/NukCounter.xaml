@@ -167,30 +167,7 @@
         </Setter>
     </Style>
 
-    <Style
-        x:Key="{x:Type controls:NukCounterDouble}"
-        TargetType="{x:Type controls:NukCounterDouble}"
-        BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
     
-    <Style
-        x:Key="{x:Type controls:NukCounterInt}"
-        TargetType="{x:Type controls:NukCounterInt}"
-        BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
-    
-    <Style
-        x:Key="{x:Type controls:NukCounterUint}"
-        TargetType="{x:Type controls:NukCounterUint}"
-        BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
-    
-    <Style
-        x:Key="{x:Type controls:NukCounterUlong}"
-        TargetType="{x:Type controls:NukCounterUlong}"
-        BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
-    
-    <Style
-        x:Key="{x:Type controls:NukCounterLong}"
-        TargetType="{x:Type controls:NukCounterLong}"
-        BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
     
     
 </ResourceDictionary>

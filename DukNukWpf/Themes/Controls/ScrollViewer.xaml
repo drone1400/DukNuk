@@ -141,7 +141,7 @@
     </Style>
 
     <ControlTemplate
-        x:Key="DukNuk.Template.ScrollBar.Vertical"
+        x:Key="DukNuk.Style.ScrollBar.VerticalTemplate"
         TargetType="{x:Type ScrollBar}">
         <Grid Margin="0,2">
             <Grid.RowDefinitions>
@@ -240,7 +240,7 @@
     </ControlTemplate>
 
     <ControlTemplate
-        x:Key="DukNuk.Template.ScrollBar.Horizontal"
+        x:Key="DukNuk.Style.ScrollBar.HorizontalTemplate"
         TargetType="{x:Type ScrollBar}">
         <Grid Margin="2,0">
             <Grid.ColumnDefinitions>
@@ -344,7 +344,7 @@
     </ControlTemplate>
 
     <Style
-        x:Key="{x:Type ScrollBar}"
+        x:Key="DukNuk.Style.ScrollBar"
         TargetType="{x:Type ScrollBar}">
         <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" />
         <Setter Property="Stylus.IsFlicksEnabled" Value="false" />
@@ -355,7 +355,7 @@
         <Setter Property="Width" Value="{DynamicResource DukNuk.Size.ScrollBar.Width}" />
         <Setter Property="MinWidth" Value="{DynamicResource DukNuk.Size.ScrollBar.Width}" />
 
-        <Setter Property="Template" Value="{DynamicResource DukNuk.Template.ScrollBar.Vertical}" />
+        <Setter Property="Template" Value="{DynamicResource DukNuk.Style.ScrollBar.VerticalTemplate}" />
 
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Horizontal">
@@ -366,13 +366,13 @@
                 <Setter Property="MinHeight"
                         Value="{DynamicResource DukNuk.Size.ScrollBar.Width}" />
                 <Setter Property="BorderThickness" Value="1" />
-                <Setter Property="Template" Value="{DynamicResource DukNuk.Template.ScrollBar.Horizontal}" />
+                <Setter Property="Template" Value="{DynamicResource DukNuk.Style.ScrollBar.HorizontalTemplate}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style
-        x:Key="{x:Type ScrollViewer}"
+        x:Key="DukNuk.Style.ScrollViewer"
         TargetType="{x:Type ScrollViewer}">
         <Setter Property="Focusable" Value="False" />
         <Setter Property="Background" Value="Transparent" />
@@ -430,10 +430,5 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <Style
-        x:Key="{x:Type controls:NukScrollViewer}"
-        TargetType="{x:Type controls:NukScrollViewer}"
-        BasedOn="{StaticResource {x:Type ScrollViewer}}" />
 
 </ResourceDictionary>

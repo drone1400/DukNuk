@@ -137,10 +137,4 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
-    <Style
-        x:Key="{x:Type CheckBox}"
-        TargetType="{x:Type CheckBox}"
-        BasedOn="{StaticResource DukNuk.Style.CheckBox}"/>
-    
 </ResourceDictionary>

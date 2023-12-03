@@ -436,7 +436,7 @@
     </ControlTemplate>
 
     <Style
-        x:Key="{x:Type TabControl}"
+        x:Key="DukNuk.Style.TabControl"
         TargetType="{x:Type TabControl}">
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
         <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
@@ -470,7 +470,7 @@
 
 
     <Style
-        x:Key="{x:Type TabItem}"
+        x:Key="DukNuk.Style.TabItem"
         TargetType="{x:Type TabItem}">
         <Setter Property="FocusVisualStyle"
                 Value="{DynamicResource DukNuk.Style.FocusVisual}" />

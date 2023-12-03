@@ -14,7 +14,7 @@
     <!-- =================================================================================================================================================== -->
 
     <ControlTemplate
-        x:Key="DukNuk.Template.ListBox"
+        x:Key="DukNuk.Style.ListBoxTemplate"
         TargetType="{x:Type ListBox}">
         <Grid>
             <!-- NOTE glow effect must be set on border directly and not on control, because otherwise the effect will affect the content presenter too! -->
@@ -61,7 +61,7 @@
 
     <!-- ListBox -->
     <Style
-        x:Key="{x:Type ListBox}"
+        x:Key="DukNuk.Style.ListBox"
         TargetType="{x:Type ListBox}">
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
         <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />
@@ -83,11 +83,11 @@
         <Setter Property="ScrollViewer.CanContentScroll" Value="true" />
         <Setter Property="ScrollViewer.PanningMode" Value="Both" />
 
-        <Setter Property="Template" Value="{DynamicResource DukNuk.Template.ListBox}" />
+        <Setter Property="Template" Value="{DynamicResource DukNuk.Style.ListBoxTemplate}" />
     </Style>
 
     <Style
-        x:Key="{x:Type ListBoxItem}"
+        x:Key="DukNuk.Style.ListBoxItem"
         TargetType="{x:Type ListBoxItem}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}" />
 
@@ -154,7 +154,7 @@
     <!-- =================================================================================================================================================== -->
 
     <Style
-        x:Key="DukNuk.Template.ListView.Thumb"
+        x:Key="DukNuk.Style.ListView.ThumbTemplate"
         TargetType="{x:Type Thumb}">
         <Setter Property="OverridesDefaultStyle" Value="true" />
         <Setter Property="IsTabStop" Value="false" />
@@ -195,7 +195,7 @@
     </Style>
 
     <Style
-        x:Key="{x:Type GridViewColumnHeader}"
+        x:Key="DukNuk.Style.GridViewColumnHeader"
         TargetType="{x:Type GridViewColumnHeader}">
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium}" />
         <Setter Property="BorderBrush" Value="Transparent" />
@@ -243,7 +243,7 @@
                                HorizontalAlignment="Center"
                                Height="Auto"
                                VerticalAlignment="Stretch"
-                               Style="{DynamicResource DukNuk.Template.ListView.Thumb}" />
+                               Style="{DynamicResource DukNuk.Style.ListView.ThumbTemplate}" />
                     </Grid>
 
                     <ControlTemplate.Triggers>
@@ -320,7 +320,7 @@
 
     <!-- custom ListView scroll viewer... -->
     <Style
-        x:Key="DukNuk.Template.ListView.ScrollViewer"
+        x:Key="DukNuk.Style.ListView.ScrollViewerTemplate"
         TargetType="{x:Type ScrollViewer}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="Foreground" Value="Transparent" />
@@ -396,9 +396,9 @@
 
     <!-- ListView -->
     <Style
-        x:Key="{x:Type ListView}"
+        x:Key="DukNuk.Style.ListView"
         TargetType="{x:Type ListView}"
-        BasedOn="{StaticResource {x:Type ListBox}}">
+        BasedOn="{StaticResource DukNuk.Style.ListBox}">
 
         <Setter Property="Template">
             <Setter.Value>
@@ -421,7 +421,7 @@
 
                         <!-- Put content presenter over border instead of inside it so it doesn't get affected by the glow blur!-->
                         <controls:NukScrollViewer
-                            Style="{DynamicResource DukNuk.Template.ListView.ScrollViewer}"
+                            Style="{DynamicResource DukNuk.Style.ListView.ScrollViewerTemplate}"
                             Grid.Row="1"
                             Focusable="False"
                             HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
@@ -458,13 +458,13 @@
         <Style.Triggers>
             <!-- Switch template when using GridView columns... -->
             <Trigger Property="View" Value="{x:Null}">
-                <Setter Property="Template" Value="{DynamicResource DukNuk.Template.ListBox}" />
+                <Setter Property="Template" Value="{DynamicResource DukNuk.Style.ListBoxTemplate}" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <ControlTemplate
-        x:Key="DukNuk.Template.ListViewItem.Normal"
+        x:Key="DukNuk.Style.ListViewItem.NormalTemplate"
         TargetType="{x:Type ListViewItem}">
 
         <Grid>
@@ -507,7 +507,7 @@
     </ControlTemplate>
 
     <Style
-        x:Key="{x:Type ListViewItem}"
+        x:Key="DukNuk.Style.ListViewItem"
         TargetType="{x:Type ListViewItem}"
         BasedOn="{StaticResource {x:Type ListBoxItem}}">
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -558,7 +558,7 @@
         <Style.Triggers>
             <!-- Switch template when using GridView columns... -->
             <Trigger Property="GridView.ColumnCollection" Value="{x:Null}">
-                <Setter Property="Template" Value="{DynamicResource DukNuk.Template.ListViewItem.Normal}" />
+                <Setter Property="Template" Value="{DynamicResource DukNuk.Style.ListViewItem.NormalTemplate}" />
             </Trigger>
         </Style.Triggers>
     </Style>

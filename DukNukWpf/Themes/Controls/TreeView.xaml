@@ -9,7 +9,7 @@
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/ThemeSizes.xaml" />
     </d:ResourceDictionary.MergedDictionaries>
 
-    <Style x:Key="{x:Type TreeView}"
+    <Style x:Key="DukNuk.Style.TreeView"
            TargetType="{x:Type TreeView}">
 
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Dark}" />
@@ -175,7 +175,7 @@
     </Style>
 
     <Style
-        x:Key="{x:Type TreeViewItem}"
+        x:Key="DukNuk.Style.TreeViewItem"
         TargetType="{x:Type TreeViewItem}">
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}" />
 

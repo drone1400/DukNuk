@@ -144,9 +144,4 @@
         </Setter>
     </Style>
 
-    <Style
-        x:Key="{x:Type RadioButton}"
-        TargetType="{x:Type RadioButton}"
-        BasedOn="{StaticResource DukNuk.Style.RadioButton}" />
-
 </ResourceDictionary>

@@ -9,7 +9,7 @@
     </d:ResourceDictionary.MergedDictionaries>
 
     <Style
-        x:Key="{x:Type ToolTip}"
+        x:Key="DukNuk.Style.ToolTip"
         TargetType="{x:Type ToolTip}">
         <Setter Property="Background" Value="{DynamicResource DukNuk.Colors.Brush.Background.Medium}" />
         <Setter Property="BorderBrush" Value="{DynamicResource DukNuk.Colors.Brush.Border.Light}" />

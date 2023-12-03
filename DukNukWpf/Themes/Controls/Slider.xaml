@@ -90,7 +90,7 @@
     </Style>
 
     <ControlTemplate
-        x:Key="DukNuk.Template.Slider.Horizontal"
+        x:Key="DukNuk.Style.Slider.HorizontalTemplate"
         TargetType="{x:Type Slider}">
         <Grid>
             <Grid.RowDefinitions>
@@ -189,7 +189,9 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
-    <ControlTemplate x:Key="DukNuk.Template.Slider.Vertical" TargetType="{x:Type Slider}">
+    <ControlTemplate 
+        x:Key="DukNuk.Style.Slider.VerticalTemplate" 
+        TargetType="{x:Type Slider}">
 
         <Grid>
             <Grid.ColumnDefinitions>
@@ -284,7 +286,7 @@
     </ControlTemplate>
 
     <Style
-        x:Key="{x:Type Slider}"
+        x:Key="DukNuk.Style.Slider"
         TargetType="{x:Type Slider}">
         <!-- <Setter Property="Stylus.IsPressAndHoldEnabled" Value="false" /> -->
         <Setter Property="FocusVisualStyle" Value="{DynamicResource DukNuk.Style.FocusVisual}" />
@@ -300,11 +302,11 @@
         <Setter Property="Margin" Value="{DynamicResource DukNuk.Size.Generic.ControlMargin}" />
         <Setter Property="Padding" Value="0" />
 
-        <Setter Property="Template" Value="{DynamicResource DukNuk.Template.Slider.Horizontal}" />
+        <Setter Property="Template" Value="{DynamicResource DukNuk.Style.Slider.HorizontalTemplate}" />
 
         <Style.Triggers>
             <Trigger Property="Orientation" Value="Vertical">
-                <Setter Property="Template" Value="{DynamicResource DukNuk.Template.Slider.Vertical}" />
+                <Setter Property="Template" Value="{DynamicResource DukNuk.Style.Slider.VerticalTemplate}" />
                 <Setter Property="HorizontalAlignment" Value="Center" />
                 <Setter Property="HorizontalContentAlignment" Value="Center" />
                 <Setter Property="VerticalAlignment" Value="Stretch" />

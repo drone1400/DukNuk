@@ -20,7 +20,6 @@
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/Label.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/ListBox.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/Menu.xaml"/>
-        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/NukCounter.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/ProgressBar.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/RadioButton.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/ScrollViewer.xaml"/>
@@ -31,7 +30,78 @@
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/Tooltip.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/TreeView.xaml"/>
         
-        <!-- Window stuff -->
+        <!-- Custom controls stuff -->
+        <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/NukCounter.xaml"/>
         <ResourceDictionary Source="pack://application:,,,/DukNukWpf;component/Themes/Controls/NukWindow.xaml"/>
     </ResourceDictionary.MergedDictionaries>
+    
+    <!-- General stuff... -->
+    <Style TargetType="{x:Type Border}" BasedOn="{StaticResource DukNuk.Style.Border}"/>
+    <Style TargetType="{x:Type ScrollBar}" BasedOn="{StaticResource DukNuk.Style.ScrollBar}"/>
+    <Style TargetType="{x:Type ScrollViewer}" BasedOn="{StaticResource DukNuk.Style.ScrollViewer}" />
+    <Style TargetType="{x:Type controls:NukScrollViewer}" BasedOn="{StaticResource DukNuk.Style.ScrollViewer}" />
+    <Style TargetType="{x:Type ToolTip}" BasedOn="{StaticResource DukNuk.Style.ToolTip}" />
+    
+    <!-- Common controls and stuff -->
+
+    <Style TargetType="{x:Type Button}" BasedOn="{StaticResource DukNuk.Style.Button}"/>
+    <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource DukNuk.Style.ToggleButton}"/>
+    <Style TargetType="{x:Type RepeatButton}" BasedOn="{StaticResource DukNuk.Style.RepeatButton}"/>
+    <Style TargetType="{x:Type CheckBox}" BasedOn="{StaticResource DukNuk.Style.CheckBox}"/>
+    <Style TargetType="{x:Type RadioButton}" BasedOn="{StaticResource DukNuk.Style.RadioButton}" />
+    <Style TargetType="{x:Type ProgressBar}" BasedOn="{StaticResource DukNuk.Style.ProgressBar}"/>
+    <Style TargetType="{x:Type Slider}" BasedOn="{StaticResource DukNuk.Style.Slider}"/>
+    
+    <!-- Text -->
+    <Style TargetType="Label" BasedOn="{StaticResource DukNuk.Style.Label}"/>
+    <Style TargetType="Hyperlink" BasedOn="{StaticResource DukNuk.Style.Hyperlink}"/>
+    <Style TargetType="{x:Type TextBoxBase}" BasedOn="{StaticResource DukNuk.Style.TextBoxBase}" />
+    <Style TargetType="{x:Type TextBox}" BasedOn="{StaticResource DukNuk.Style.TextBoxBase}"/>
+    <Style TargetType="{x:Type RichTextBox}" BasedOn="{StaticResource DukNuk.Style.RichTextBox}"/>
+    <Style TargetType="{x:Type PasswordBox}" BasedOn="{StaticResource DukNuk.Style.PasswordBox}"/>
+    
+    <!-- NukCounters -->
+    <Style TargetType="{x:Type controls:NukCounterDouble}" BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
+    <Style TargetType="{x:Type controls:NukCounterInt}" BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
+    <Style TargetType="{x:Type controls:NukCounterUint}" BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
+    <Style TargetType="{x:Type controls:NukCounterUlong}" BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
+    <Style TargetType="{x:Type controls:NukCounterLong}" BasedOn="{StaticResource DukNuk.Style.NukCounter.Base}"/>
+    
+    <!-- Item controls -->
+    <Style TargetType="{x:Type ComboBox}" BasedOn="{StaticResource DukNuk.Style.ComboBox}"/>
+    <Style TargetType="{x:Type ComboBoxItem}" BasedOn="{StaticResource DukNuk.Style.ComboBoxItem}"/>
+    <Style TargetType="{x:Type ListBox}" BasedOn="{StaticResource DukNuk.Style.ListBox}"/>
+    <Style TargetType="{x:Type ListBoxItem}" BasedOn="{StaticResource DukNuk.Style.ListBoxItem}"/>
+    <Style TargetType="{x:Type GridViewColumnHeader}" BasedOn="{StaticResource DukNuk.Style.GridViewColumnHeader}"/>
+    <Style TargetType="{x:Type ListView}" BasedOn="{StaticResource DukNuk.Style.ListView}"/>
+    <Style TargetType="{x:Type ListViewItem}" BasedOn="{StaticResource DukNuk.Style.ListViewItem}"/>
+    <Style TargetType="{x:Type TreeView}" BasedOn="{StaticResource DukNuk.Style.TreeView}"/>
+    <Style TargetType="{x:Type TreeViewItem}" BasedOn="{StaticResource DukNuk.Style.TreeViewItem}"/>
+    
+    <!-- Container controls -->
+    <Style TargetType="{x:Type Expander}" BasedOn="{StaticResource DukNuk.Style.Expander}"/>
+    <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource DukNuk.Style.GroupBox}"/>
+    <Style TargetType="{x:Type TabControl}" BasedOn="{StaticResource DukNuk.Style.TabControl}"/>
+    <Style TargetType="{x:Type TabItem}" BasedOn="{StaticResource DukNuk.Style.TabItem}"/>
+    <Style TargetType="{x:Type StatusBar}" BasedOn="{StaticResource DukNuk.Style.StatusBar}"/>
+    <Style TargetType="{x:Type Separator}" x:Key="{x:Static StatusBar.SeparatorStyleKey}" BasedOn="{StaticResource DukNuk.Style.StatusBar.Separator}"/>
+    
+    <!-- Menus -->
+    <Style TargetType="{x:Type ContextMenu}" BasedOn="{StaticResource DukNuk.Style.ContextMenu}"/>
+    <Style TargetType="{x:Type Menu}" BasedOn="{StaticResource DukNuk.Style.Menu}"/>
+    <Style TargetType="{x:Type MenuItem}" BasedOn="{StaticResource DukNuk.Style.MenuItem}"/>
+    <Style TargetType="{x:Type Separator}" x:Key="{x:Static MenuItem.SeparatorStyleKey}" BasedOn="{StaticResource DukNuk.Style.Menu.Separator}"/>
+    
+    <!-- DataGrid -->
+    <Style TargetType="{x:Type DataGrid}" BasedOn="{StaticResource DukNuk.Style.DataGrid}"/>
+    <Style TargetType="{x:Type controls:NukDataGrid}" BasedOn="{StaticResource DukNuk.Style.DataGrid}"/>
+    <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource DukNuk.Style.DataGrid.Cell}" />
+    <Style TargetType="{x:Type DataGridRow}" BasedOn="{StaticResource DukNuk.Style.DataGridRow}" />
+    <Style TargetType="{x:Type DataGridRowHeader}" BasedOn="{StaticResource DukNuk.Style.DataGridRowHeader}" />
+    <Style TargetType="{x:Type DataGridColumnHeader}" BasedOn="{StaticResource DukNuk.Style.DataGridColumnHeader}" />
+    <Style TargetType="{x:Type DataGridColumnHeadersPresenter}" BasedOn="{StaticResource DukNuk.Style.DataGridColumnHeadersPresenter}" />
+    <Style TargetType="{x:Type DataGridCheckBoxColumn}" BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridCheckBoxColumn}"/>
+    <Style TargetType="{x:Type DataGridComboBoxColumn}" BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridComboBoxColumn}"/>
+    <Style TargetType="{x:Type DataGridTextColumn}" BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridTextBoxColumn}"/>
+    <Style TargetType="{x:Type DataGridTemplateColumn}" BasedOn="{StaticResource DukNuk.Style.DataGrid.DataGridTemplateColumn}"/>
 </ResourceDictionary>
