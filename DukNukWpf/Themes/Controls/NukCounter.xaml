@@ -59,16 +59,14 @@
                             <Setter Property="Effect" TargetName="border"
                                     Value="{DynamicResource DukNuk.Colors.Glow.Control.MouseOver}" />
                         </Trigger>
-                        <DataTrigger
-                            Binding="{Binding IsEnabled, RelativeSource={RelativeSource AncestorType={x:Type ScrollBar}}}"
-                            Value="false">
+                        <Trigger Property="IsEnabled" Value="false">
                             <Setter Property="Stroke" TargetName="border"
                                     Value="{DynamicResource DukNuk.Colors.Brush.Border.Disabled}" />
                             <Setter Property="Effect" TargetName="border"
                                     Value="{DynamicResource DukNuk.Colors.Glow.Control.Disabled}" />
                             <Setter Property="Fill" TargetName="border"
                                     Value="{DynamicResource DukNuk.Colors.Brush.Background.Disabled}" />
-                        </DataTrigger>
+                        </Trigger>
                     </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
