@@ -129,7 +129,7 @@
                                 </MultiBinding>
                             </RepeatButton.Visibility>
                             <Path
-                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonLeft}"
+                                StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
                                 Stroke="{Binding BorderBrush, ElementName=ButtonLeft}"
                                 Fill="{Binding Background, ElementName=ButtonLeft}"
                                 Effect="{Binding Effect, ElementName=ButtonLeft}"
@@ -157,7 +157,7 @@
                                 </MultiBinding>
                             </RepeatButton.Visibility>
                             <Path
-                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonRight}"
+                                StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
                                 Stroke="{Binding BorderBrush, ElementName=ButtonRight}"
                                 Fill="{Binding Background, ElementName=ButtonRight}"
                                 Effect="{Binding Effect, ElementName=ButtonRight}"
@@ -225,7 +225,7 @@
                                 </MultiBinding>
                             </RepeatButton.Visibility>
                             <Path
-                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonUp}"
+                                StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
                                 Stroke="{Binding BorderBrush, ElementName=ButtonUp}"
                                 Fill="{Binding Background, ElementName=ButtonUp}"
                                 Effect="{Binding Effect, ElementName=ButtonUp}"
@@ -253,7 +253,7 @@
                                 </MultiBinding>
                             </RepeatButton.Visibility>
                             <Path
-                                StrokeThickness="{Binding BorderThickness, ElementName=ButtonDown}"
+                                StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
                                 Stroke="{Binding BorderBrush, ElementName=ButtonDown}"
                                 Fill="{Binding Background, ElementName=ButtonDown}"
                                 Effect="{Binding Effect, ElementName=ButtonDown}"
@@ -297,7 +297,7 @@
                 Grid.Row="1" Grid.Column="0"
                 Margin="0"
                 Stroke="{TemplateBinding BorderBrush}"
-                StrokeThickness="{TemplateBinding BorderThickness}"
+                StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
                 Fill="Transparent"
                 SnapsToDevicePixels="True">
                 <Path.Data>
@@ -380,7 +380,7 @@
                 Grid.Row="0" Grid.Column="1"
                 Margin="0"
                 Stroke="{TemplateBinding BorderBrush}"
-                StrokeThickness="{TemplateBinding BorderThickness}"
+                StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
                 Fill="Transparent"
                 SnapsToDevicePixels="True">
                 <Path.Data>
@@ -515,29 +515,9 @@
                     <Grid>
                         <!-- NOTE: Canvas needed for the path pixel coordinates to work right inside the ScrollViewer parent -->
                         <Canvas>
-                            <!-- <Path Stroke="Transparent" -->
-                            <!--       StrokeThickness="0" -->
-                            <!--       Fill="{TemplateBinding Background}" -->
-                            <!--       UseLayoutRounding="True"> -->
-                            <!--     <Path.Data> -->
-                            <!--         <MultiBinding -->
-                            <!--             FallbackValue="M 0,0 L 0,1 L 1,1 L 1,0 Z" -->
-                            <!--             Converter="{StaticResource DukNuk.Converter.TabItem.Path}" -->
-                            <!--             ConverterParameter="true"> -->
-                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualWidth" /> -->
-                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="ActualHeight" /> -->
-                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="(controls:TabItemHelper.HeaderBezierSize)" /> -->
-                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsSelected" /> -->
-                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsEnabled" /> -->
-                            <!--             <Binding RelativeSource="{RelativeSource TemplatedParent}" Path="IsMouseOver" /> -->
-                            <!--             <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="BorderThickness" /> -->
-                            <!--             <Binding RelativeSource="{RelativeSource AncestorType=TabControl}" Path="TabStripPlacement" /> -->
-                            <!--         </MultiBinding> -->
-                            <!--     </Path.Data> -->
-                            <!-- </Path> -->
                             <Path x:Name="border"
                                   Stroke="{TemplateBinding BorderBrush}"
-                                  StrokeThickness="{TemplateBinding BorderThickness}"
+                                  StrokeThickness="{DynamicResource DukNuk.Size.Generic.ControlStrokeThickness}"
                                   Fill="{TemplateBinding Background}"
                                   UseLayoutRounding="True">
                                 <Path.Data>
