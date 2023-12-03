@@ -3,6 +3,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
 using System.Windows.Shapes;
+using System.Windows.Shell;
 namespace DukNuk.Wpf.Controls {
     
     // background graphics
@@ -52,6 +53,12 @@ namespace DukNuk.Wpf.Controls {
             typeof(MenuPositionValue),
             typeof(NukWindow),
             new FrameworkPropertyMetadata(MenuPositionValue.OnTitleBar, OnWindowShapeChanged)
+            );
+        
+        public static readonly DependencyProperty ResizeBorderThicknessProperty = DependencyProperty.Register(nameof(ResizeBorderThickness),
+            typeof(Thickness),
+            typeof(NukWindow),
+            new FrameworkPropertyMetadata(new Thickness(13), OnWindowShapeChanged)
             );
         
         public static readonly DependencyProperty TitleMenuZoneHeightProperty = DependencyProperty.Register(nameof(TitleMenuZoneHeight),
@@ -169,6 +176,12 @@ namespace DukNuk.Wpf.Controls {
         public MenuPositionValue MenuPosition {
             get => (MenuPositionValue)this.GetValue(NukWindow.MenuPositionProperty);
             set => this.SetValue(NukWindow.MenuPositionProperty, value);
+        }
+        
+        [Category("Custom Look - General")]
+        public Thickness ResizeBorderThickness {
+            get => (Thickness)this.GetValue(NukWindow.ResizeBorderThicknessProperty);
+            set => this.SetValue(NukWindow.ResizeBorderThicknessProperty, value);
         }
                 
         [Category("Custom Look - General")]
@@ -424,6 +437,20 @@ namespace DukNuk.Wpf.Controls {
 
         //int debug = 0;
 
+        private void UpdateWindowChrome(double calculatedCaptionHeight) {
+            WindowChrome? chrome = this.GetValue(WindowChrome.WindowChromeProperty) as WindowChrome;
+            
+            if (chrome == null) {
+                chrome = new WindowChrome();
+                chrome.ResizeBorderThickness = this.ResizeBorderThickness;
+                chrome.CaptionHeight = calculatedCaptionHeight;
+                this.SetValue(WindowChrome.WindowChromeProperty, chrome);
+            } else {
+                chrome.ResizeBorderThickness = this.ResizeBorderThickness;
+                chrome.CaptionHeight = calculatedCaptionHeight;
+            }
+        }
+
         private void RecalculatePaths() {
             //this.debug++;
             //this.Title = $"{this.debug} - {this.ActualWidth}x{this.ActualHeight}";
@@ -484,7 +511,12 @@ namespace DukNuk.Wpf.Controls {
             TitlePositionValue tpv = this.TitlePosition; 
             MenuPositionValue mpv = this.MenuPosition;
 
-            if (mpv == MenuPositionValue.OnTitleBar) tpv = TitlePositionValue.Top;
+            if (mpv == MenuPositionValue.OnTitleBar) {
+                tpv = TitlePositionValue.Top;
+                this.UpdateWindowChrome(this.TitleZoneHeight - TitleMenuZoneHeight);
+            } else {
+                this.UpdateWindowChrome(this.TitleZoneHeight);
+            }
 
             if (this.part_windowTitle != null) {
                 if (tpv == TitlePositionValue.Left) {

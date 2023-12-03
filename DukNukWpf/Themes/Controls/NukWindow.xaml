@@ -14,7 +14,6 @@
 
     
     <converters:NukWindowContentVisibilityConverter x:Key="DukNuk.Converter.Window.ContentVisibility"/>
-    <converters:NukWindowCaptionHeightConverter x:Key="DukNuk.Converter.Window.CaptionHeight"/>
 
     <Style
         x:Key="DukNuk.Style.NukWindow.TitleBarButton"
@@ -299,23 +298,9 @@
         <Setter Property="TitleCornerRightHeight" Value="{DynamicResource DukNuk.Size.TitleBar.CornerRight.Height}" />
         <Setter Property="TitleCornerRightQuadBezierRadius"
                 Value="{DynamicResource DukNuk.Size.TitleBar.CornerRight.QuadraticBezierRadius}" />
-
-
-        <Setter Property="WindowChrome.WindowChrome">
-            <Setter.Value>
-                <WindowChrome ResizeBorderThickness="{DynamicResource DukNuk.Size.Window.ResizeBorderThickness}">
-                    <WindowChrome.CaptionHeight>
-                        <MultiBinding Converter="{StaticResource DukNuk.Converter.Window.CaptionHeight}"
-                                      FallbackValue="13">
-                            <Binding RelativeSource="{RelativeSource AncestorType=controls:NukWindow}" Path="TitleZoneHeight"/>
-                            <Binding RelativeSource="{RelativeSource AncestorType=controls:NukWindow}" Path="TitleMenuZoneHeight"/>
-                            <Binding RelativeSource="{RelativeSource AncestorType=controls:NukWindow}" Path="MenuPosition"/>
-                        </MultiBinding>
-                    </WindowChrome.CaptionHeight>
-                </WindowChrome>
-            </Setter.Value>
-        </Setter>
-
+        
+        <Setter Property="ResizeBorderThickness" Value="{DynamicResource DukNuk.Size.Window.ResizeBorderThickness}" />
+        
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
         <Setter Property="Template" Value="{DynamicResource DukNuk.Template.NukWindow}" />
